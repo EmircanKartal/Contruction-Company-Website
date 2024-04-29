@@ -1,28 +1,45 @@
 /* Navbar.module.css */
+
 .navbar {
   display: flex;
-  justify-content: space-between; /* Adjust this to space the items as in the image */
-  padding: 1rem 2rem; /* Add horizontal padding */
-  background-color: #ffffff; /* Set background to white */
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  margin-bottom: 0.7rem;
+  background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   align-items: center;
 }
 
 .navLink {
-  color: #333;
+  color: #000000;
   text-decoration: none;
   padding: 0.5rem 1rem;
   transition: color 0.3s ease;
-  font-weight: bold; /* Make the font bold */
-  font-size: 1rem; /* Set a standard font size */
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 .navLink:hover,
 .navLink:focus {
-  color: #007bff; /* This could be any color that suits the white theme */
+  color: #007bff;
 }
 
 .active {
-  color: #007bff; /* Again, adjust if needed for your color scheme */
+  color: #007bff;
   border-bottom: 2px solid #007bff;
+}
+
+.contactButton {
+  color: #000000; /* Black text color */
+  background-color: #ffffff; /* White background */
+  border: 2px solid #000000; /* Black border */
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contactButton:hover,
+.contactButton:focus {
+  background-color: #000000; /* Black background on hover */
+  color: #ffffff; /* White text color on hover */
 }

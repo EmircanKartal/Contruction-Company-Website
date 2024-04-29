@@ -1,13 +1,72 @@
-/* Home.module.css */
+/* Existing styles */
 .home {
-    margin: 20px;
-    padding: 20px;
-    text-align: center;
-    background: #f5f5f5; /* Example background color for the home page */
-  }
-  
-  .home h1 {
-    color: #007bff;
-    margin-bottom: 20px;
-  }
-  
+  margin: 0px;
+  padding: 0px;
+  height: 1400px;
+  text-align: center;
+  background: #ffffff; /* Example background color for the home page */
+}
+
+.home h1 {
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+/* Styles for the main content section below the slider */
+.mainContent {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Styles for the highlights section with stat items */
+.highlights {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.statItem {
+  flex-basis: 30%;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.statNumber {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.statDescription {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Description styling */
+.description {
+  font-size: 18px;
+  color: #444;
+  margin-top: 30px;
+  line-height: 1.6;
+}
+
+/* Styles for the customer stats section */
+.customerStats {
+  background: #e9ecef;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 30px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.statDescription {
+  text-transform: uppercase;
+  color: #555;
+}

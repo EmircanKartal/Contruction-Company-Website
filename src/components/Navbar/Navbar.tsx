@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
@@ -40,10 +39,12 @@ const Navbar = () => {
 
       {/* Registration Links placeholder */}
       <div className={styles.registrationLinks}>
-        <a href="/contact" className={styles.navLink}>
+        <NavLink
+          to="/contact"
+          className={`${styles.navLink} ${styles.contactButton}`}
+        >
           İletişim
-        </a>
-        {/* You can replace this with NavLink if you have corresponding routes */}
+        </NavLink>
       </div>
     </nav>
   );
