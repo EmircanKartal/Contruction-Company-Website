@@ -1,0 +1,13 @@
+/* About.module.css */
+.about {
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    background: #f5f5f5; /* Example background color for the home page */
+  }
+  
+  .about h1 {
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+  

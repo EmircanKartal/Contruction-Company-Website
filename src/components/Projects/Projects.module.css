@@ -1,0 +1,12 @@
+/* Projects.module.css */
+.projects {
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .projects h1 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  

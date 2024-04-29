@@ -1,0 +1,28 @@
+/* Navbar.module.css */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Adjust this to space the items as in the image */
+  padding: 1rem 2rem; /* Add horizontal padding */
+  background-color: #ffffff; /* Set background to white */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.navLink {
+  color: #333;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+  font-weight: bold; /* Make the font bold */
+  font-size: 1rem; /* Set a standard font size */
+}
+
+.navLink:hover,
+.navLink:focus {
+  color: #007bff; /* This could be any color that suits the white theme */
+}
+
+.active {
+  color: #007bff; /* Again, adjust if needed for your color scheme */
+  border-bottom: 2px solid #007bff;
+}
