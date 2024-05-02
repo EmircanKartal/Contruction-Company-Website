@@ -1,34 +1,31 @@
-/* Existing styles */
 .home {
-  margin: 0px;
-  padding: 0px;
-  height: 1400px;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #ffffff;
   text-align: center;
-  background: #ffffff; /* Example background color for the home page */
 }
 
-.home h1 {
-  color: #007bff;
-  margin-bottom: 20px;
-}
-
-/* Styles for the main content section below the slider */
-.mainContent {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Styles for the highlights section with stat items */
-.highlights {
+.contentContainer {
   display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
   padding: 20px;
+}
+
+.statsColumn {
+  width: 50%;
+  text-align: left;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Adjust grid layout for stats */
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .statItem {
-  flex-basis: 30%;
   background: #f8f9fa;
   border: 1px solid #dee2e6;
   padding: 20px;
@@ -45,28 +42,48 @@
 .statDescription {
   font-size: 16px;
   color: #666;
+  text-transform: uppercase;
 }
 
-/* Description styling */
-.description {
+.extraContent {
+  width: 45%; 
   font-size: 18px;
   color: #444;
-  margin-top: 30px;
   line-height: 1.6;
+  padding-left: 20px; 
+}
+.footer {
+  background: #000;
+  color: #fff;
+  margin-top: 300px;
+  padding: 150px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Styles for the customer stats section */
-.customerStats {
-  background: #e9ecef;
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 30px;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+.footerLinks a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
 }
 
-.statDescription {
-  text-transform: uppercase;
-  color: #555;
+.footerInfo p, .footerCopyright p {
+  margin: 5px 0;
+}
+
+.footerInfo a {
+  color: white;
+  text-decoration: none;
+  display: block; /* Makes each link a block element */
+  margin-bottom: 5px;
+}
+
+.coordinates {
+  margin: 0px 0px 16px;  
+  font-family: Montserrat; /* Gives a typewriter-like font */
+  font-size: 30px; /* Adjust size as needed */
+  color: white; /* Text color */
+  text-align: center;
 }

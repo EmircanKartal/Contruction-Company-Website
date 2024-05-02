@@ -1,19 +1,45 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
-
-type NavLinkStyleProps = { isActive: boolean };
+import React, { useState, useEffect } from "react";
 
 const Navbar = () => {
-  return (
-    <nav className={styles.navbar}>
-      {/* Logo placeholder */}
-      <div className={styles.logo}>LOGO</div>
+  const [show, setShow] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(window.scrollY);
 
-      {/* Navigation Links */}
-      <div className={styles.navLinks}>
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY) {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <nav className={`${styles.navbar} ${show ? "" : styles.hidden}`}>
+      <div className={styles.logo}>Yeni Yüzyıl İnşaat</div>
+      <button className={styles.hamburger} onClick={toggleMenu}>
+        ☰
+      </button>
+      <div
+        className={`${styles.navLinks} ${isOpen ? styles.show : styles.hide}`}
+      >
         <NavLink
           to="/"
-          className={({ isActive }: NavLinkStyleProps) =>
+          className={({ isActive }) =>
             isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
           }
         >
@@ -21,7 +47,7 @@ const Navbar = () => {
         </NavLink>
         <NavLink
           to="/projects"
-          className={({ isActive }: NavLinkStyleProps) =>
+          className={({ isActive }) =>
             isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
           }
         >
@@ -29,16 +55,12 @@ const Navbar = () => {
         </NavLink>
         <NavLink
           to="/about"
-          className={({ isActive }: NavLinkStyleProps) =>
+          className={({ isActive }) =>
             isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
           }
         >
           Hakkımızda
         </NavLink>
-      </div>
-
-      {/* Registration Links placeholder */}
-      <div className={styles.registrationLinks}>
         <NavLink
           to="/contact"
           className={`${styles.navLink} ${styles.contactButton}`}

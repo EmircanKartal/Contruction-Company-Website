@@ -1,22 +1,30 @@
 /* Navbar.module.css */
-
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  margin-bottom: 0.7rem;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   align-items: center;
+  padding: 1.76rem 2rem;
+  background-color: #fffffff5;
+  transition: top 0.3s ease-out;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;  /* Ensure navbar is above other content */
+}
+
+.logo {
+  flex-grow: 1;
 }
 
 .navLink {
   color: #000000;
   text-decoration: none;
   padding: 0.5rem 1rem;
-  transition: color 0.3s ease;
   font-weight: bold;
   font-size: 1rem;
+  margin-right: 6px;
+  margin-left: 2px;
 }
 
 .navLink:hover,
@@ -25,21 +33,105 @@
 }
 
 .active {
-  color: #007bff;
-  border-bottom: 2px solid #007bff;
+  text-decoration: underline;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  z-index: 102;  /* Above the navLinks overlay */
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+}
+
+/* White hamburger */
+.hamburger.white {
+  box-shadow: 0 0 0 2px #ffffff;
+}
+
+/* Black hamburger */
+.hamburger.black {
+  box-shadow: 0 0 0 2px #000000;
+}
+
+/* Thick lines for hamburger icon */
+.hamburger::before,
+.hamburger::after,
+.hamburger span {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 4px;
+  background-color: #000000; /* Adjust color as needed */
+  margin: 5px auto; /* Adjust spacing as needed */
+}
+
+/* White version */
+.hamburger.white::before,
+.hamburger.white::after,
+.hamburger.white span {
+  background-color: #ffffff; /* White color */
+}
+
+.hidden {
+  top: -100px;
 }
 
 .contactButton {
-  color: #000000; /* Black text color */
-  background-color: #ffffff; /* White background */
-  border: 2px solid #000000; /* Black border */
+  border: 2px solid #000000;
   border-radius: 4px;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s ease, color 0.3s ease;
+  margin-left: 100px;
+  margin-right: 150px;
 }
 
 .contactButton:hover,
 .contactButton:focus {
-  background-color: #000000; /* Black background on hover */
-  color: #ffffff; /* White text color on hover */
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 855px) {
+  .navbar {
+    position: relative;
+  }
+
+  .hamburger {
+    display: block;  /* Show hamburger icon */
+  }
+
+  .navLinks {
+    position: fixed;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;  /* Below hamburger but above everything else */
+  }
+
+  .show {
+    transform: translateX(0);  /* Show menu */
+  }
+
+  .hide {
+    transform: translateX(100%);  /* Hide menu */
+  }
+
+  .navLink, .contactButton {
+    text-align: center;
+    padding: 1.2rem;  /* Larger tap targets */
+  }
 }

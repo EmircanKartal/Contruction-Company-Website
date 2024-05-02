@@ -1,0 +1,62 @@
+.footer {
+  background: #000;
+  color: #fff;
+  padding: 90px;
+  margin-top: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footerContent {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.footerLinks {
+  display: flex;
+  flex-direction: row; /* Ensures the links are in a horizontal line */
+  align-items: center; /* Centers the links vertically */
+  justify-content: space-around; /* Distributes space evenly around the links */
+}
+
+.footerLinks a {
+  text-decoration: none;
+  margin: 10px 20px; /* Increases space between links */
+  color: white;
+  font-family: 'Montserrat', sans-serif; /* Sets the font family to Montserrat */
+  font-size: 18px; /* Increases the font size */
+  font-weight: bold; /* Makes the font weight bold */
+}
+
+.footerInfo {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  padding: 0px 60px;
+  margin-right: 100px;
+  align-items: flex-start; /* Aligns info to the left */  
+}
+
+.footerInfo a, .footerInfo p {
+  color: white;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.coordinates {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  color: white;
+  text-align: left; /* Aligns coordinates text to the left */
+}
+
+.footerCopyright {
+  text-align: center;
+  margin-top: 20px; 
+}
+.footerCopyright p a {
+  color: #fff; /* Set text color to white */
+  text-decoration: none; /* Remove underline */
+}
