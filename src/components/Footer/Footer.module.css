@@ -12,51 +12,61 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
 }
 
 .footerLinks {
   display: flex;
-  flex-direction: row; /* Ensures the links are in a horizontal line */
-  align-items: center; /* Centers the links vertically */
-  justify-content: space-around; /* Distributes space evenly around the links */
+  margin-top: -90px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-basis: 200%; /* Full width on smaller screens */
 }
 
 .footerLinks a {
   text-decoration: none;
-  margin: 10px 20px; /* Increases space between links */
+  margin: 10px 20px;
   color: white;
-  font-family: 'Montserrat', sans-serif; /* Sets the font family to Montserrat */
-  font-size: 18px; /* Increases the font size */
-  font-weight: bold; /* Makes the font weight bold */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.footerInfo {
-  display: flex;
-  flex-direction: column;
-  font-size: 20px;
-  padding: 0px 60px;
-  margin-right: 100px;
-  align-items: flex-start; /* Aligns info to the left */  
-}
 
-.footerInfo a, .footerInfo p {
-  color: white;
-  text-decoration: none;
-  margin-bottom: 5px;
+.icon {
+  margin-right: 10px; /* Space between icon and text */
 }
 
 .coordinates {
   font-family: 'Montserrat', sans-serif;
   font-size: 30px;
   color: white;
-  text-align: left; /* Aligns coordinates text to the left */
+  margin-top: 20px;
+  text-align: left;
+  flex-basis: 100%; /* Full width on smaller screens */
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  margin: 0 50px;
+  flex-basis: 100%; /* Full width on smaller screens */
+}
+
+.socialIcons a {
+  margin: 0 22px;
+  color: #0066ff;
+  margin-top: 20px;
 }
 
 .footerCopyright {
   text-align: center;
-  margin-top: 20px; 
+  margin-top: 20px;
+  flex-basis: 100%; /* Full width on smaller screens */
 }
+
 .footerCopyright p a {
-  color: #fff; /* Set text color to white */
-  text-decoration: none; /* Remove underline */
+  color: #fff;
+  text-decoration: none;
 }

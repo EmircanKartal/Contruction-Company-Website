@@ -1,12 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMapMarkerAlt,
-  faPhone,
-  faEnvelope,
-  faMap,
-} from "@fortawesome/free-solid-svg-icons";
+
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
@@ -21,35 +15,21 @@ const Footer = () => {
         </div>
 
         <div className={styles.socialIcons}>
-          <a href="https://www.facebook.com">
-            <FaFacebook />
+          <a href="https://www.facebook.com" style={{ color: "#0066ff" }}>
+            <FaFacebook size={40} />
           </a>
-          <a href="https://www.linkedin.com">
-            <FaLinkedin />
+          <a href="https://www.linkedin.com" style={{ color: "#0066ff" }}>
+            <FaLinkedin size={40} />
           </a>
-          <a href="https://www.linkedin.com">
-            <FaInstagram />
+          <a href="https://www.instagram.com" style={{ color: "#0066ff" }}>
+            <FaInstagram size={40} />
           </a>
-        </div>
-
-        <div className={styles.footerInfo}>
-          <p>
-            <FontAwesomeIcon icon={faMapMarkerAlt} /> Karabaş, 41040
-            İzmit/Kocaeli
-          </p>
-          <a href="tel:+902324633923">
-            <FontAwesomeIcon icon={faPhone} /> +90 232 463 39 23
-          </a>
-          <a href="mailto:info@notmimarlik.com">
-            <FontAwesomeIcon icon={faEnvelope} /> info@yeniyuzyil.com
-          </a>
-          <div className={styles.coordinates}>
-            <p>40°45'49.57"N</p>
-            <p>29°55'49.31"E</p>
-          </div>
         </div>
       </div>
-
+      <div className={styles.coordinates}>
+        <p>40°45'49.57"N</p>
+        <p>29°55'49.319"E</p>
+      </div>
       <div className={styles.footerCopyright}>
         <p>© 2024 Yeni Yüzyıl İnşaat A.Ş. All rights reserved.</p>
         <p>
