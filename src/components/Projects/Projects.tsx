@@ -3,7 +3,9 @@ import React from "react";
 import styles from "./Projects.module.css";
 import Footer from "../Footer/Footer"; // Make sure the path is accurate
 import PhotoSlider from "../Slider/Slider";
-
+import image1 from "../assets/footage1.png";
+import image2 from "../assets/footage2.png";
+import image3 from "../assets/footage3.png";
 const projectsData = [
   {
     id: 1,
@@ -44,10 +46,16 @@ const projectsData = [
 ];
 
 const Projects = () => {
+  const slides = [
+    { image: image1, text: "KALİTE" },
+    { image: image2, text: "GÜVEN" },
+    { image: image3, text: "YENİLİK" },
+  ];
   return (
     <>
       <div>
         {/* Photo Slider <PhotoSlider images={images} text={text} />*/}
+        <PhotoSlider slides={slides} />
 
         <h1 className={styles.heading}>Projeler</h1>
         <div className={styles.projects}>

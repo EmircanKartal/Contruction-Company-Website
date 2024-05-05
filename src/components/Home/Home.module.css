@@ -1,3 +1,4 @@
+/* Home.module.css */
 .home {
   margin: 0;
   padding: 0;
@@ -11,9 +12,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  grid-template-columns: 1fr 2fr; /* Project carousel on the left, details on the right */
+
   justify-content: center;
   padding: 0 15px;
-  margin-top: 40px;
+  margin-top: 80px;
   text-align: center;
 }
 
@@ -21,32 +24,83 @@
   position: absolute;
   z-index: 0;
   font-size: 150px;
-  margin-top: 60px;
-  margin-left: 78px;
+  margin-top: -715px;
+  margin-left: 60px;
   font-weight: bold;
-  opacity: 0.1;
-  color: #000000;
+  opacity: 0;
+  color: #2b2b2b28;
   user-select: none;
-}
-
-.foregroundText {
-  position: relative;
-  z-index: 1;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 36px;
-  color: #2B2B2B;
-  margin-bottom: 20px;
+  animation: slideInFromRight 1.5s forwards;
 }
 
 .firmInfo {
   position: relative;
   z-index: 1;
+  grid-column: span 2; /* Make the firm info full-width */
+
   font-size: 18px;
   color: #444;
   font-weight: 600;
   max-width: 600px;
   margin-top: 20px;
   line-height: 1.6;
+  opacity: 0;
+  animation: slideInFromRight 1.5s forwards;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.InfoHeader{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  color: #2B2B2B;
+  margin-bottom: 2px;
+  margin-top: 60px;
+  animation: slideInFromRight 1.5s forwards;
+
+}
+/* Two-column project info */
+.projectInfo {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.projectInfo h2 {
+  text-align: left;
+  color: #2b2b2b;
+}
+
+.projectInfo p {
+  text-align: right;
+  color: #444;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .projectInfo {
+    grid-template-columns: 1fr; /* Stack carousel and details vertically */
+    text-align: center;
+  }
+
+  .projectInfo h2,
+  .projectInfo p {
+    text-align: center;
+  }
 }
 
 .footer {
@@ -59,78 +113,32 @@
   flex-direction: column;
   align-items: center;
 }
+.aboutLinkContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
 
-.footerLinks a {
-  color: white;
+.aboutLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Space between text and the arrow */
+  padding: 12px 24px;
   text-decoration: none;
-  margin: 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #0066ff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  animation: slideInFromRight 1.5s forwards;
+
 }
 
-.footerInfo p, .footerCopyright p {
-  margin: 5px 0;
+.aboutLink:hover {
+  background-color: #0066ff;
+  color: #fff;
 }
 
-.footerInfo a {
-  color: white;
-  text-decoration: none;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.coordinates {
-  margin: 0 0 16px;
-  font-family: Montserrat;
-  font-size: 24px;
-  color: white;
-  text-align: center;
-}
-
-/* Responsive Design: Adjusts styles for screens smaller than 768px */
-@media (max-width: 768px) {
-  .backgroundText {
-    font-size: 80px;
-  }
-
-  .foregroundText {
-    font-size: 24px;
-  }
-
-  .firmInfo {
-    font-size: 16px;
-    margin-top: 15px;
-  }
-
-  .footer {
-    padding: 30px;
-    margin-top: 50px;
-  }
-
-  .coordinates {
-    font-size: 20px;
-  }
-}
-
-/* Responsive Design: Adjusts styles for screens smaller than 480px */
-@media (max-width: 480px) {
-  .backgroundText {
-    font-size: 50px;
-  }
-
-  .foregroundText {
-    font-size: 20px;
-  }
-
-  .firmInfo {
-    font-size: 14px;
-    margin-top: 10px;
-  }
-
-  .footer {
-    padding: 20px;
-    margin-top: 30px;
-  }
-
-  .coordinates {
-    font-size: 18px;
-  }
+.aboutLink .fas {
+  font-size: 18px;
 }

@@ -21,6 +21,8 @@
 
 .logo {
   flex-grow: 1;
+  color:#fefefe;
+  font-size: large;
 }
 
 .navLinks {

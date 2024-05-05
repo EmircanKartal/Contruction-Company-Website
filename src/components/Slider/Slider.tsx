@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,9 +15,12 @@ type PhotoSliderProps = {
 
 const PhotoSlider: React.FC<PhotoSliderProps> = ({ slides }) => {
   const sliderRef = useRef<any>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const [titlePosition, setTitlePosition] = useState(0);
+  const [opacity, setOpacity] = useState(1);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 1900,
     slidesToShow: 1,
@@ -41,6 +44,21 @@ const PhotoSlider: React.FC<PhotoSliderProps> = ({ slides }) => {
     },
   };
 
+  // Scroll listener for animating title
+  useEffect(() => {
+    const handleScroll = () => {
+      if (titleRef.current) {
+        const scrollY = window.scrollY;
+        const newPosition = Math.min(scrollY / 4, 80); // Limit the left movement
+        setTitlePosition(newPosition);
+        setOpacity(Math.max(1 - scrollY / 300, 0)); // Adjust fade effect
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className={styles.sliderContainer}>
       <Slider {...settings} ref={sliderRef}>
@@ -49,11 +67,20 @@ const PhotoSlider: React.FC<PhotoSliderProps> = ({ slides }) => {
             <div className={styles.imageContainer}>
               <img src={slide.image} alt={`Slide ${index + 1}`} />
               <div className={styles.filter}></div>
-              <div className={styles.textOverlay}>{slide.text}</div>
             </div>
           </div>
         ))}
       </Slider>
+      <h1
+        className={styles.foregroundText}
+        ref={titleRef}
+        style={{
+          transform: `translateX(-${titlePosition}%)`,
+          opacity: opacity,
+        }}
+      >
+        Yüzyıl.
+      </h1>
     </div>
   );
 };

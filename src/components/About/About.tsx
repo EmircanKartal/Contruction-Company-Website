@@ -7,10 +7,20 @@ import {
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../Footer/Footer";
-
+import PhotoSlider from "../Slider/Slider";
+import image1 from "../assets/footage1.png";
+import image2 from "../assets/footage2.png";
+import image3 from "../assets/footage3.png";
 const About = () => {
+  const slides = [
+    { image: image1, text: "KALİTE" },
+    { image: image2, text: "GÜVEN" },
+    { image: image3, text: "YENİLİK" },
+  ];
   return (
     <div className={styles.about}>
+      <PhotoSlider slides={slides} />
+
       <div className={styles.contentContainer}>
         <h1 className={styles.foregroundText}>Yeniyüzyıl İnşaat Hakkında</h1>
         <div className={styles.firmInfo}>
