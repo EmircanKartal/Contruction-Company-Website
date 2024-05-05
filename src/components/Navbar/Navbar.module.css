@@ -5,36 +5,52 @@
   align-items: center;
   padding: 1.76rem 2rem;
   background-color: #ffffff00;
-  transition: top 1.3s ease-out;
+  transition: top 1.34s ease; 
   position: fixed;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   top: 0;
   left: 0;
-  z-index: 100;  /* Ensure navbar is above other content */
+  z-index: 100;
+}
+
+.hidden {
+  top: -100px; 
 }
 
 .logo {
   flex-grow: 1;
 }
 
+.navLinks {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .navLink {
-  color: #000000;
+  color: #fefefe;
   text-decoration: none;
   padding: 0.5rem 1rem;
-  font-weight: bold;
+  font-weight: lighter;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
-  margin-right: 6px;
-  margin-left: 2px;
+  font-size: 1.06rem;
+  margin: 0 6px;
 }
 
 .navLink:hover,
 .navLink:focus {
-  color: #05fcef;
+  color: #ffd700;
 }
 
 .active {
-  text-decoration: underline;
+  text-decoration: #fefefe;
 }
 
 .hamburger {
@@ -43,54 +59,20 @@
   position: absolute;
   right: 20px;
   top: 15px;
-  z-index: 102;  /* Above the navLinks overlay */
+  z-index: 102;
   background-color: transparent;
   border: none;
   padding: 10px;
-  margin: 0 auto; /* Center the hamburger icon when displayed */
-
-}
-
-/* White hamburger */
-.hamburger.white {
-  box-shadow: 0 0 0 2px #ffffff5c;
-}
-
-/* Black hamburger */
-.hamburger.black {
-  box-shadow: 0 0 0 2px #000000;
-}
-
-/* Thick lines for hamburger icon */
-.hamburger::before,
-.hamburger::after,
-.hamburger span {
-  content: "";
-  display: block;
-  width: 30px;
-  height: 4px;
-  background-color: #000000; /* Adjust color as needed */
-  margin: 5px auto; /* Adjust spacing as needed */
-}
-
-/* White version */
-.hamburger.white::before,
-.hamburger.white::after,
-.hamburger.white span {
-  background-color: #ffffff52; /* White color */
-}
-
-.hidden {
-  top: -100px;
+  margin: 0 auto;
 }
 
 .contactButton {
   border: 2px solid #000000;
   border-radius: 4px;
   padding: 0.5rem 1rem;
+  margin-left: 20px;
+  margin-right: 20px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-left: 100px;
-  margin-right: 150px;
 }
 
 .contactButton:hover,
@@ -99,43 +81,12 @@
   color: #ffffff;
 }
 
-/* Responsive adjustments for smaller screens */
 @media (max-width: 855px) {
-  .navbar {
-    flex-direction: column; /* Stack logo and hamburger vertically */
-  }
-
   .hamburger {
-    display: block; /* Show hamburger icon */
-    position: static; /* Let it flow in the document */
+    display: block;
   }
 
   .navLinks {
-    position: fixed;
-    background-color: #ffffff;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    right: 0;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 101;  /* Below hamburger but above everything else */
-  }
-
-  .show {
-    transform: translateX(0);  /* Show menu */
-  }
-
-  .hide {
-    transform: translateX(100%);  /* Hide menu */
-  }
-
-  .navLink, .contactButton {
-    text-align: center;
-    padding: 1.2rem;  /* Larger tap targets */
+    display: none;
   }
 }

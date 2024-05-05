@@ -1,8 +1,8 @@
 .footer {
   background: #000;
   color: #fff;
-  padding: 90px;
-  margin-top: 190px;
+  padding: 60px 30px; /* Reduced padding for smaller screens */
+  margin-top: 100px; /* Adjusted margin */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,60 +10,62 @@
 
 .footerContent {
   display: flex;
+  flex-direction: column; /* Stacked layout on smaller screens */
   width: 100%;
-  justify-content: space-between;
-  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  margin-top: -34px;
+  justify-content: center; /* Center content horizontally */
+  flex-wrap: wrap; /* Allow wrapping */
 }
 
 .footerLinks {
   display: flex;
-  margin-top: -90px;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  flex-basis: 200%; /* Full width on smaller screens */
+  flex-wrap: wrap;
+  justify-content: center; /* Centered alignment */
+  margin: 10px 0; /* Adjusted margin */
 }
 
 .footerLinks a {
   text-decoration: none;
-  margin: 10px 20px;
+  margin: 10px 28px; /* Adjusted spacing between links */
   color: white;
   font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
+  font-size: 25px; /* Slightly smaller font size */
   font-weight: bold;
 }
 
-
 .icon {
-  margin-right: 10px; /* Space between icon and text */
+  margin-right: 10px;
 }
 
 .coordinates {
   font-family: 'Montserrat', sans-serif;
-  font-size: 30px;
+  font-size: 36px; /* Adjusted font size */
   color: white;
-  margin-top: 20px;
-  text-align: left;
-  flex-basis: 100%; /* Full width on smaller screens */
+  margin-top: 10px;
+  margin-bottom: -25px;
+  text-align: center; /* Centered coordinates */
+  flex-basis: 100%;
 }
 
 .socialIcons {
   display: flex;
   justify-content: center;
-  margin: 0 50px;
-  flex-basis: 100%; /* Full width on smaller screens */
+  margin: 7px 0;
+  flex-basis: 100%;
+  margin-top: 20px;
+  margin-bottom: -5px;
 }
 
 .socialIcons a {
-  margin: 0 22px;
+  margin: 0 15px; /* Reduced spacing between icons */
   color: #0066ff;
-  margin-top: 20px;
 }
 
 .footerCopyright {
   text-align: center;
   margin-top: 20px;
-  flex-basis: 100%; /* Full width on smaller screens */
+  flex-basis: 100%;
 }
 
 .footerCopyright p a {

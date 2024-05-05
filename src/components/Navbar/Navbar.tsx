@@ -1,6 +1,8 @@
+// Navbar.js
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import HamburgerMenu from "./HamburgerMenu";
 
 const Navbar = () => {
   const [show, setShow] = useState(true);
@@ -11,9 +13,9 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY) {
-        setShow(false);
+        setShow(false); // Hides the navbar
       } else {
-        setShow(true);
+        setShow(true); // Shows the navbar
       }
       setLastScrollY(currentScrollY);
     };
@@ -24,16 +26,12 @@ const Navbar = () => {
     };
   }, [lastScrollY]);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
     <nav className={`${styles.navbar} ${show ? "" : styles.hidden}`}>
       <div className={styles.logo}>Yeni Yüzyıl İnşaat</div>
-      <button className={styles.hamburger} onClick={toggleMenu}>
-        ☰
-      </button>
+      <HamburgerMenu />
       <div
         className={`${styles.navLinks} ${isOpen ? styles.show : styles.hide}`}
       >

@@ -16,13 +16,13 @@ const Footer = () => {
 
         <div className={styles.socialIcons}>
           <a href="https://www.facebook.com" style={{ color: "#0066ff" }}>
-            <FaFacebook size={40} />
+            <FaFacebook size={47} />
           </a>
           <a href="https://www.linkedin.com" style={{ color: "#0066ff" }}>
-            <FaLinkedin size={40} />
+            <FaLinkedin size={47} />
           </a>
           <a href="https://www.instagram.com" style={{ color: "#0066ff" }}>
-            <FaInstagram size={40} />
+            <FaInstagram size={47} />
           </a>
         </div>
       </div>

@@ -2,61 +2,58 @@
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: #ffa20d;
+  background: #ffffff;
   text-align: center;
 }
 
 .contentContainer {
+  position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  margin-top: 40px;
+  text-align: center;
 }
 
-.statsColumn {
-  width: 50%;
-  text-align: left;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Adjust grid layout for stats */
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.statItem {
-  background: #000000;
-  border: 1px solid #0080ff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.1);
-}
-
-.statNumber {
-  font-size: 24px;
+.backgroundText {
+  position: absolute;
+  z-index: 0;
+  font-size: 150px;
+  margin-top: 60px;
+  margin-left: 78px;
   font-weight: bold;
-  color: #333;
+  opacity: 0.1;
+  color: #000000;
+  user-select: none;
 }
 
-.statDescription {
-  font-size: 16px;
-  color: #666;
-  text-transform: uppercase;
+.foregroundText {
+  position: relative;
+  z-index: 1;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  color: #2B2B2B;
+  margin-bottom: 20px;
 }
 
-.extraContent {
-  width: 45%; 
+.firmInfo {
+  position: relative;
+  z-index: 1;
   font-size: 18px;
   color: #444;
+  font-weight: 600;
+  max-width: 600px;
+  margin-top: 20px;
   line-height: 1.6;
-  padding-left: 20px; 
 }
+
 .footer {
   background: #000;
   color: #fff;
-  margin-top: 300px;
-  padding: 150px;
+  margin-top: 100px;
+  padding: 60px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -76,14 +73,64 @@
 .footerInfo a {
   color: white;
   text-decoration: none;
-  display: block; /* Makes each link a block element */
+  display: block;
   margin-bottom: 5px;
 }
 
 .coordinates {
-  margin: 0px 0px 16px;  
-  font-family: Montserrat; /* Gives a typewriter-like font */
-  font-size: 30px; /* Adjust size as needed */
-  color: white; /* Text color */
+  margin: 0 0 16px;
+  font-family: Montserrat;
+  font-size: 24px;
+  color: white;
   text-align: center;
+}
+
+/* Responsive Design: Adjusts styles for screens smaller than 768px */
+@media (max-width: 768px) {
+  .backgroundText {
+    font-size: 80px;
+  }
+
+  .foregroundText {
+    font-size: 24px;
+  }
+
+  .firmInfo {
+    font-size: 16px;
+    margin-top: 15px;
+  }
+
+  .footer {
+    padding: 30px;
+    margin-top: 50px;
+  }
+
+  .coordinates {
+    font-size: 20px;
+  }
+}
+
+/* Responsive Design: Adjusts styles for screens smaller than 480px */
+@media (max-width: 480px) {
+  .backgroundText {
+    font-size: 50px;
+  }
+
+  .foregroundText {
+    font-size: 20px;
+  }
+
+  .firmInfo {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .footer {
+    padding: 20px;
+    margin-top: 30px;
+  }
+
+  .coordinates {
+    font-size: 18px;
+  }
 }

@@ -5,47 +5,37 @@ import styles from "./Home.module.css";
 import image1 from "../assets/footage1.png";
 import image2 from "../assets/footage2.png";
 import image3 from "../assets/footage3.png";
-import mainImage from "../assets/mainHouse.png"; // Assuming this image is used elsewhere or needs to be added
-
 const Home = () => {
-  const images = [image1, image2, image3];
-  const text = "Yeniyüzyıl İnşaat";
+  const slides = [
+    {
+      image: image1,
+      text: "KALİTE",
+    },
+    {
+      image: image2,
+      text: "GÜVEN",
+    },
+    {
+      image: image3,
+      text: "YENİLİK",
+    },
+  ];
 
   return (
     <div className={styles.home}>
-      {/* Photo Slider */}
-      <PhotoSlider images={images} text={text} />
+      <PhotoSlider slides={slides} />
 
       <div className={styles.contentContainer}>
-        <div className={styles.statsColumn}>
-          <h1>Finding perfect real estate deals made easier</h1>
-          <div className={styles.stats}>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>250+</div>
-              <div className={styles.statDescription}>Properties listed</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>17+</div>
-              <div className={styles.statDescription}>Brokers</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>6+</div>
-              <div className={styles.statDescription}>Cities reached</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>2.6k+</div>
-              <div className={styles.statDescription}>Satisfied Customers</div>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.extraContent}>
-          Get your next home, office, and any real estate with us and find the
-          best offers available right now.
+        <div className={styles.backgroundText}>Biz Kimiz ?</div>
+        <h1 className={styles.foregroundText}>Yeniyüzyıl.</h1>
+        <div className={styles.firmInfo}>
+          İzmit'te gelişen ve büyüyen yapı sektöründe öncü bir marka olarak 2024
+          yılında kurulduk. Kaliteli işçilik, yenilikçi projeler ve müşteri
+          memnuniyeti odaklı hizmet anlayışımızla sektörde adımız sıkça söz
+          ettirmeye devam ediyoruz.
         </div>
       </div>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

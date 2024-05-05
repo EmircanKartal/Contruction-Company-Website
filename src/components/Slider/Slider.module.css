@@ -24,7 +24,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #ffa50080; /* Light orange/brown with low opacity */
+  background-color: #0066ff4f; /* Light orange/brown with low opacity */
 }
 
 .textOverlay {
@@ -36,7 +36,19 @@
   font-size: 2rem;
   text-align: center;
 }
+/* Responsive Design: Adjusts styles for screens smaller than 768px */
+@media (max-width: 768px) {
+  .overlayText {
+    font-size: 2.5rem; /* Adjust font size */
+  }
+}
 
+/* Responsive Design: Adjusts styles for screens smaller than 480px */
+@media (max-width: 480px) {
+  .overlayText {
+    font-size: 2rem; /* Further adjust font size */
+  }
+}
 .slick-dots li.slick-active button:before {
   opacity: 1; /* Full opacity */
   color: red; /* Red color for the active dot */
