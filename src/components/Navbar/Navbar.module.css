@@ -5,7 +5,6 @@
   align-items: center;
   padding: 1.76rem 2rem;
   background-color: #ffffff00;
-  transition: top 1.34s ease; 
   position: fixed;
   width: 100%;
   max-width: 100%;
@@ -15,13 +14,9 @@
   z-index: 100;
 }
 
-.hidden {
-  top: -100px; 
-}
-
 .logo {
   flex-grow: 1;
-  color:#fefefe;
+  color: #000;
   font-size: large;
 }
 
@@ -32,37 +27,19 @@
   font-weight: lighter;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.06rem;
-  margin: 0 6px;
-  /* Adding black outline */
-  text-shadow: 
-    -0.3px -0.3px 0 #000, /* Top-left */
-    0.3px -0.3px 0 #000,  /* Top-right */
-    -0.3px 0.3px 0 #000,  /* Bottom-left */
-    0.3px 0.3px 0 #000;   /* Bottom-right */
-}
-
-
-
-.navLink {
-  color: #fefefe;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  font-weight: lighter;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.06rem;
   margin: 0 8px;
   text-shadow:
-    -1px -1px 1px #000, /* Top-left */
-    1px -1px 1px #000,  /* Top-right */
-    -1px 1px 1px #000,  /* Bottom-left */
-    1px 1px 1px #000;   /* Bottom-right */
-  border-bottom: 2px solid transparent; /* Add border-bottom for hover effect */
+    -1px -1px 1px #000,
+    1px -1px 1px #000,
+    -1px 1px 1px #000,
+    1px 1px 1px #000;
+  border-bottom: 2px solid transparent;
   transition: border-bottom 0.3s ease, color 0.3s ease;
 }
 
 .navLink:hover,
 .navLink:focus {
-  color: #fcd5f9; /* Adjust highlight color */
+  color: #fcd5f9;
   text-shadow:
     -1px -1px 1px #000,
     1px -1px 1px #000,
@@ -88,7 +65,7 @@
 }
 
 .contactButton {
-  border: 2px solid #000000;
+  border: 2px solid #000;
   border-radius: 4px;
   padding: 0.5rem 1rem;
   margin-left: 20px;
@@ -98,8 +75,8 @@
 
 .contactButton:hover,
 .contactButton:focus {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #000;
+  color: #fff;
 }
 
 @media (max-width: 855px) {

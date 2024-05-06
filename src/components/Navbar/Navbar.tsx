@@ -1,35 +1,16 @@
 // Navbar.js
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import { useState, useEffect } from "react";
 import HamburgerMenu from "./HamburgerMenu";
+import { useState } from "react";
 
 const Navbar = () => {
-  const [show, setShow] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(window.scrollY);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY) {
-        setShow(false); // Hides the navbar
-      } else {
-        setShow(true); // Shows the navbar
-      }
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className={`${styles.navbar} ${show ? "" : styles.hidden}`}>
+    <nav className={styles.navbar}>
       <div className={styles.logo}>Logo</div>
       <HamburgerMenu />
       <div

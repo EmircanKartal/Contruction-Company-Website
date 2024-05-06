@@ -1,4 +1,5 @@
 /* Home.module.css */
+
 .home {
   margin: 0;
   padding: 0;
@@ -12,8 +13,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  grid-template-columns: 1fr 2fr; /* Project carousel on the left, details on the right */
-
   justify-content: center;
   padding: 0 15px;
   margin-top: 80px;
@@ -24,10 +23,11 @@
   position: absolute;
   z-index: 0;
   font-size: 150px;
-  margin-top: -715px;
-  margin-left: 60px;
+  top: calc(1.5% - 80px); /* Center vertically using half the height minus half the font size */
+  left: calc(37% - 75px); /* Center horizontally using half the width minus half the font size */
+  transform: translate(-50%, -50%);
   font-weight: bold;
-  opacity: 0;
+  opacity: 0.1;
   color: #2b2b2b28;
   user-select: none;
   animation: slideInFromRight 1.5s forwards;
@@ -36,13 +36,10 @@
 .firmInfo {
   position: relative;
   z-index: 1;
-  grid-column: span 2; /* Make the firm info full-width */
-
   font-size: 18px;
   color: #444;
   font-weight: 600;
   max-width: 600px;
-  margin-top: 20px;
   line-height: 1.6;
   opacity: 0;
   animation: slideInFromRight 1.5s forwards;
@@ -58,16 +55,16 @@
     transform: translateX(0);
   }
 }
-.InfoHeader{
+
+.InfoHeader {
   font-family: 'Montserrat', sans-serif;
   font-size: 36px;
   color: #2B2B2B;
-  margin-bottom: 2px;
+  margin-bottom: 20px;
   margin-top: 60px;
   animation: slideInFromRight 1.5s forwards;
-
 }
-/* Two-column project info */
+
 .projectInfo {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -93,13 +90,19 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .projectInfo {
-    grid-template-columns: 1fr; /* Stack carousel and details vertically */
+    grid-template-columns: 1fr;
     text-align: center;
   }
 
   .projectInfo h2,
   .projectInfo p {
     text-align: center;
+  }
+
+  .backgroundText {
+    font-size: 80px;
+    top: calc(50% - 40px);
+    left: calc(50% - 40px);
   }
 }
 
@@ -113,6 +116,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .aboutLinkContainer {
   display: flex;
   justify-content: center;
@@ -122,7 +126,7 @@
 .aboutLink {
   display: inline-flex;
   align-items: center;
-  gap: 8px; /* Space between text and the arrow */
+  gap: 8px;
   padding: 12px 24px;
   text-decoration: none;
   font-size: 18px;
@@ -131,7 +135,6 @@
   border-radius: 8px;
   transition: all 0.3s ease;
   animation: slideInFromRight 1.5s forwards;
-
 }
 
 .aboutLink:hover {
