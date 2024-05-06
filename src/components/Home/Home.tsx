@@ -8,32 +8,16 @@ import image1 from "../assets/footage1.png";
 import image2 from "../assets/footage2.png";
 import image3 from "../assets/footage3.png";
 import { Link } from "react-router-dom";
+import projectsData from "../Projects/projects.json";
 
 interface Project {
   id: number;
   title: string;
-  description?: string;
+  image: string;
+  date?: string;
+  location?: string;
+  catalog?: string;
 }
-
-const projectsData: Project[] = [
-  { id: 1, title: "Project One", description: "Details about Project One..." },
-  { id: 2, title: "Project Two", description: "Details about Project Two..." },
-  {
-    id: 3,
-    title: "Project Three",
-    description: "Details about Project Three...",
-  },
-  {
-    id: 4,
-    title: "Project Four",
-    description: "Details about Project Four...",
-  },
-  {
-    id: 5,
-    title: "Project Five",
-    description: "Details about Project Five...",
-  },
-];
 
 const Home: React.FC = () => {
   const slides = [
@@ -64,8 +48,7 @@ const Home: React.FC = () => {
         </div>
         <div className={styles.aboutLinkContainer}>
           <Link to="/about" className={styles.aboutLink}>
-            Hakkımızda <i className="fas fa-angle-right"></i>{" "}
-            {/* Adds Font Awesome right angle icon */}
+            Hakkımızda <i className="fas fa-angle-right"></i>
           </Link>
         </div>
         <div className={styles.InfoHeader}>Projelerimiz</div>

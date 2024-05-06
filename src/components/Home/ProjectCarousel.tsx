@@ -1,12 +1,14 @@
 // ProjectCarousel.tsx
 import React, { useState } from "react";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 import styles from "./ProjectCarousel.module.css";
 
 interface Project {
   id: number;
   title: string;
-  description?: string;
+  image: string;
+  date?: string;
 }
 
 interface ProjectCarouselProps {
@@ -26,7 +28,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
     infinite: true,
     vertical: true,
     verticalSwiping: true,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     focusOnSelect: true,
     centerMode: true,
@@ -42,6 +44,9 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
     return styles.slide;
   };
 
+  const generateProjectLink = (title: string) =>
+    `/project/${encodeURIComponent(title.replace(/\s+/g, "-").toLowerCase())}`;
+
   return (
     <div className={styles.verticalCarouselContainer}>
       <Slider {...settings} className={styles.verticalCarousel}>
@@ -56,10 +61,19 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
         ))}
       </Slider>
 
-      <div className={styles.projectDetails}>
-        <h2>{selectedProject.title}</h2>
-        <p>{selectedProject.description}</p>
-      </div>
+      <Link to={generateProjectLink(selectedProject.title)}>
+        <div className={styles.projectDetails}>
+          <h2>{selectedProject.title}</h2>
+          <img
+            src={selectedProject.image}
+            alt={selectedProject.title}
+            className={styles.projectImage}
+          />
+          <p>
+            <strong>Date:</strong> {selectedProject.date || "N/A"}
+          </p>
+        </div>
+      </Link>
     </div>
   );
 };

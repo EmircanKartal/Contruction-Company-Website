@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <nav className={`${styles.navbar} ${show ? "" : styles.hidden}`}>
-      <div className={styles.logo}>Yüzyıl İnşaat Logo gelecek</div>
+      <div className={styles.logo}>Logo</div>
       <HamburgerMenu />
       <div
         className={`${styles.navLinks} ${isOpen ? styles.show : styles.hide}`}

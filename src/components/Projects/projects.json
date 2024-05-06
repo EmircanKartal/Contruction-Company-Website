@@ -1,0 +1,54 @@
+[
+    {
+      "id": 1,
+      "title": "Project One",
+      "image": "https://img.freepik.com/free-photo/3d-rendering-abstract-building_23-2150896894.jpg",
+      "date": "2024",
+      "location": "Derince/Kocaeli",
+      "catalog": "www.fliphtml5.com"
+
+    },
+    {
+      "id": 2,
+      "title": "Project Two",
+      "image": "https://img.freepik.com/premium-photo/timeless-classic-modern-residential-building-exterior-with-white-background-generative-ai_911330-1142.jpg",      
+      "date": "2019",
+      "location": "İzmit/Kocaeli",
+      "catalog": "www.fliphtml5.com"
+
+    },
+    {
+      "id": 3,
+      "title": "Project Three",
+      "image": "https://img.freepik.com/premium-photo/model-building-with-orange-white-bricks_910054-4465.jpg",      
+      "date": "2021",
+      "location": "Maltepe/İstanbul",
+      "catalog": "www.fliphtml5.com"
+    },
+    {
+      "id": 4,
+      "title": "Project Four",
+      "image": "https://img.freepik.com/premium-photo/3d-building-model_677801-637.jpg",      
+      "date": "2022",
+      "location": "Pendik/İstanbul",
+      "catalog": "www.fliphtml5.com"
+    },
+    {
+      "id": 5,
+      "title": "Project Five",
+      "image": "https://img.freepik.com/premium-photo/3d-building-model_677801-642.jpg",      
+      "date": "2024",
+      "location": "Gebze/Kocaeli",
+      "catalog": "www.fliphtml5.com"
+
+    },
+    {
+      "id": 6,
+      "title": "Project Six",
+      "image": "https://img.freepik.com/premium-photo/photo-modern-corporate-architecture-can-be-seen-cityscape-office-buildings_812426-26359.jpg",      
+      "date": "2023",
+      "location": "Kandıra/Kocaeli",
+      "catalog": "www.fliphtml5.com"
+    }
+  ]
+  
