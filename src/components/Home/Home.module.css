@@ -23,8 +23,8 @@
   position: absolute;
   z-index: 0;
   font-size: 150px;
-  top: calc(1.5% - 80px); /* Center vertically using half the height minus half the font size */
-  left: calc(37% - 75px); /* Center horizontally using half the width minus half the font size */
+  top: calc(1.5% - 80px); 
+  left: calc(37% - 75px); 
   transform: translate(-50%, -50%);
   font-weight: bold;
   opacity: 0.1;

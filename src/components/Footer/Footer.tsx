@@ -31,7 +31,7 @@ const Footer = () => {
         <p>29°55'49.319"E</p>
       </div>
       <div className={styles.footerCopyright}>
-        <p>© 2024 Yüzyıl İnşaat A.Ş. All rights reserved.</p>
+        <p>© 2024 Yüz Yapı A.Ş. All rights reserved.</p>
         <p>
           Design by{" "}
           <a

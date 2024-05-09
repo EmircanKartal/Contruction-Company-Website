@@ -2,7 +2,7 @@
   background: #000;
   color: #fff;
   padding: 60px 30px; /* Reduced padding for smaller screens */
-  margin-top: 100px; /* Adjusted margin */
+  margin-top: 0px; /* Set margin top to 0 to remove the space */
   display: flex;
   flex-direction: column;
   align-items: center;

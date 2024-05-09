@@ -79,7 +79,7 @@ const PhotoSlider: React.FC<PhotoSliderProps> = ({ slides }) => {
           opacity: opacity,
         }}
       >
-        Yüzyıl.
+        Yüzyapı.
       </h1>
     </div>
   );

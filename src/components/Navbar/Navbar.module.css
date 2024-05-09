@@ -9,11 +9,14 @@
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+  transition: top 1.6s ease;
   top: 0;
   left: 0;
   z-index: 100;
 }
-
+.hide {
+  top: -100%; /* Adjust based on the actual height of your navbar */
+}
 .logo {
   flex-grow: 1;
   color: #000;

@@ -19,6 +19,7 @@
   margin: 0 180px;
   padding-bottom: 20px;
   margin-top: 50px;
+  margin-bottom: 100px;
 
 }
 
@@ -72,11 +73,12 @@
 
 .projectTitle {
   font-weight: bold;
+  font-size: 1.8em;
   margin-bottom: 10px;
 }
 
 .readMore {
-  font-weight: normal;
+  font-weight: bold;
   color: #FF6347;
-  font-size: 1em;
+  font-size: 1.2em;
 }

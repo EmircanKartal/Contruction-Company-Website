@@ -37,6 +37,7 @@
   font-size: 100px;
   color: #ffffff;
   margin-top: -160px;
+  margin-left: -67px;
   left: 42%;
   transform: translateX(-50%);
   transition: all 1.2s ease-in-out;

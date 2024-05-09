@@ -8,12 +8,20 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: #fff;
+    color: #b2b2b2;
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 102;
   }
+  /* Add box-shadow to each line of the hamburger menu icon */
+.hamburger-icon .line {
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+  margin: 6px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add box-shadow */
+}
   
   /* Make the menu cover the entire screen */
   .menu {
@@ -22,7 +30,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 102, 255, 0.85);
+    background: rgba(0, 102, 255, 0.597);
     display: flex;
     flex-direction: column;
     justify-content: center;
