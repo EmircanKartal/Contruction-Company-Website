@@ -26,9 +26,9 @@ const formattedProjectsData: Project[] = projectsData.map((project) => ({
 
 const Home: React.FC = () => {
   const slides = [
-    { image: image1, text: "KALİTE" },
-    { image: image2, text: "GÜVEN" },
-    { image: image3, text: "YENİLİK" },
+    { image: image1, text: "image-1" },
+    { image: image2, text: "image-2" },
+    { image: image3, text: "image-3" },
   ];
 
   const [selectedProject, setSelectedProject] = useState<Project>(

@@ -6,8 +6,9 @@
       "date": "2024",
       "location": "Derince/Kocaeli",
       "catalog": "www.fliphtml5.com",
-      "description": "This is a description of Project One. It involves detailed information about the objectives and outcomes of the project."
-
+      "description": "This is a description of Project One. It involves detailed information about the objectives and outcomes of the project.",
+      "type": "Site",
+      "firm": "Yüz Yapı"
     },
     {
       "id": 2,
@@ -16,9 +17,9 @@
       "date": "2019",
       "location": "İzmit/Kocaeli",
       "catalog": "www.fliphtml5.com",
-      "description": "This is a description of Project Two. It covers different aspects and uses different technologies."
-
-
+      "description": "This is a description of Project Two. It covers different aspects and uses different technologies.",
+      "type": "Site",
+      "firm": "Yüz Yapı"
     },
     {
       "id": 3,
@@ -27,8 +28,9 @@
       "date": "2021",
       "location": "Maltepe/İstanbul",
       "catalog": "www.fliphtml5.com",
-      "description": "Project Three is all about innovation and forward-thinking solutions in the industry."
-
+      "description": "Project Three is all about innovation and forward-thinking solutions in the industry.",
+      "type": "Site",
+      "firm": "Yüz Yapı"
     },
     {
       "id": 4,
@@ -37,8 +39,9 @@
       "date": "2022",
       "location": "Pendik/İstanbul",
       "catalog": "www.fliphtml5.com",
-      "description": "This is a description of Project four. Used be ghosts are living there."
-
+      "description": "This is a description of Project four. Used be ghosts are living there.",
+      "type": "Site",
+      "firm": "Yüz Yapı"
     },
     {
       "id": 5,
@@ -47,8 +50,9 @@
       "date": "2024",
       "location": "Gebze/Kocaeli",
       "catalog": "www.fliphtml5.com",
-      "description": "This is a description of Project five. what a house damn."
-
+      "description": "This is a description of Project five. what a house damn.",
+      "type": "Site",
+      "firm": "Yüz Yapı"
 
     },
     {
@@ -58,8 +62,9 @@
       "date": "2023",
       "location": "Kandıra/Kocaeli",
       "catalog": "www.fliphtml5.com",
-      "description": "This is a description of Project six. I'm just Ken."
-
+      "description": "This is a description of Project six. I'm just Ken.",
+      "type": "Site",
+      "firm": "Yüz Yapı"
     }
   ]
   
