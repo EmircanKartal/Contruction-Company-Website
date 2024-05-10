@@ -5,19 +5,21 @@
     background: #ffffff;
     text-align: center;
   }
-.project-detail-container {
+  .project-detail-container {
     width: 50%;
     margin: 20px auto;
     font-family: Arial, sans-serif;
   }
   
   .project-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 36px;
-    color: #2B2B2B;
-    margin-bottom: 20px;
-    margin-top: 60px;
-    animation: slideInFromRight 1.5s forwards;
+    position: relative;
+  z-index: 1;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  color: #2B2B2B;
+  margin-bottom: 30px;
+  margin-top: 60px;
+
   }
   
   .project-info {
@@ -39,11 +41,11 @@
   }
   
   .project-image {
-    width: 30%;
+    width: 50%;
     height: auto;
     display: block;
-    margin-bottom: 20px;
-  }
+    margin: 0 auto 20px auto; /* Set margin to auto horizontally and 20px vertically */
+}
   
   .not-found {
     font-size: 24px;
@@ -55,4 +57,5 @@
     color: blue;
     text-decoration: none;
   }
+  
   

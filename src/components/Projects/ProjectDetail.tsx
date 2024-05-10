@@ -2,11 +2,11 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import projectsData from "./projects.json"; // Ensure this path is correct
 import "./ProjectDetail.css"; // Import the CSS for styling
-import Footer from "../Footer/Footer";
-import PhotoSlider from "../Slider/Slider";
 import image1 from "../assets/footage1.png";
 import image2 from "../assets/footage2.png";
 import image3 from "../assets/footage3.png";
+import Footer from "../Footer/Footer";
+import PhotoSlider from "../Slider/Slider";
 const ProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId?: string }>();
   const project = projectsData.find((p) => p.id.toString() === projectId);

@@ -9,9 +9,9 @@ import image3 from "../assets/footage3.png";
 import { FaAlignCenter } from "react-icons/fa";
 const About = () => {
   const slides = [
-    { image: image1, text: "KALİTE" },
-    { image: image2, text: "GÜVEN" },
-    { image: image3, text: "YENİLİK" },
+    { image: image1, text: "image-1" },
+    { image: image2, text: "image-2" },
+    { image: image3, text: "image-3" },
   ];
   return (
     <div className={styles.about}>
@@ -22,19 +22,19 @@ const About = () => {
           <div className={styles.textWithBackground}>
             <p className={styles.backgroundText}>Vizyon</p>
             <p>
-              Geçmişten Günümüze Yolculuk Yeniyüzyıl İnşaat, köklü bir tecrübe
-              ve birikime sahip kurucuları tarafından hayata geçirilmiştir.
-              İnşaat sektöründeki uzun yıllara dayanan birikim, kurucuların
-              vizyonuyla birleşerek şirketin temelini oluşturmuştur.
-              Kuruluşundan bugüne kadar geçen süreçte, Yeniyüzyıl İnşaat sadece
-              yapısal değil, aynı zamanda toplumsal ve çevresel sorumlulukları
-              da gözeterek faaliyet göstermiştir.
+              Geçmişten Günümüze Yolculuk Yüz Yapı, köklü bir tecrübe ve
+              birikime sahip kurucuları tarafından hayata geçirilmiştir. İnşaat
+              sektöründeki uzun yıllara dayanan birikim, kurucuların vizyonuyla
+              birleşerek şirketin temelini oluşturmuştur. Kuruluşundan bugüne
+              kadar geçen süreçte,Yüz Yapı sadece yapısal değil, aynı zamanda
+              toplumsal ve çevresel sorumlulukları da gözeterek faaliyet
+              göstermiştir.
             </p>
           </div>
           <div className={styles.textWithBackground}>
             <p className={styles.backgroundText}>Misyon</p>
             <p>
-              Vizyonumuz ve Misyonumuz Yeniyüzyıl İnşaat, her projesinde
+              Vizyonumuz ve Misyonumuz Yüz Yapı, her projesinde
               sürdürülebilirlik ilkesini ön planda tutar ve çevreye duyarlı
               inşaat uygulamalarını benimser. Müşteri memnuniyetini esas alarak,
               yüksek kaliteli malzeme kullanımı ve profesyonel işçilikle
