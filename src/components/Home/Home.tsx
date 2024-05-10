@@ -1,4 +1,3 @@
-// Home.tsx
 import React, { useState } from "react";
 import PhotoSlider from "../Slider/Slider";
 import ProjectCarousel from "../Home/ProjectCarousel";
@@ -11,13 +10,19 @@ import { Link } from "react-router-dom";
 import projectsData from "../Projects/projects.json";
 
 interface Project {
-  id: number;
+  id: string; // ID is a string
   title: string;
   image: string;
   date?: string;
   location?: string;
   catalog?: string;
 }
+
+// Convert projects data from JSON, mapping id to string
+const formattedProjectsData: Project[] = projectsData.map((project) => ({
+  ...project,
+  id: project.id.toString(), // Ensure id is converted to string
+}));
 
 const Home: React.FC = () => {
   const slides = [
@@ -27,8 +32,10 @@ const Home: React.FC = () => {
   ];
 
   const [selectedProject, setSelectedProject] = useState<Project>(
-    projectsData[0]
+    formattedProjectsData[0]
   );
+  const generateProjectLink = (id: string) =>
+    `/project/${encodeURIComponent(id)}`;
 
   const handleProjectSelect = (project: Project): void => {
     setSelectedProject(project);
@@ -37,7 +44,6 @@ const Home: React.FC = () => {
   return (
     <div className={styles.home}>
       <PhotoSlider slides={slides} />
-
       <div className={styles.contentContainer}>
         <div className={styles.backgroundText}>Biz Kimiz?</div>
         <div className={styles.firmInfo}>
@@ -53,12 +59,11 @@ const Home: React.FC = () => {
         </div>
         <div className={styles.InfoHeader}>Projelerimiz</div>
         <ProjectCarousel
-          projects={projectsData}
+          projects={formattedProjectsData}
           selectedProject={selectedProject}
           onSelect={handleProjectSelect}
         />
       </div>
-
       <Footer />
     </div>
   );

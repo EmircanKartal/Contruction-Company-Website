@@ -5,7 +5,8 @@
       "image": "https://img.freepik.com/free-photo/3d-rendering-abstract-building_23-2150896894.jpg",
       "date": "2024",
       "location": "Derince/Kocaeli",
-      "catalog": "www.fliphtml5.com"
+      "catalog": "www.fliphtml5.com",
+      "description": "This is a description of Project One. It involves detailed information about the objectives and outcomes of the project."
 
     },
     {
@@ -14,7 +15,9 @@
       "image": "https://img.freepik.com/premium-photo/timeless-classic-modern-residential-building-exterior-with-white-background-generative-ai_911330-1142.jpg",      
       "date": "2019",
       "location": "İzmit/Kocaeli",
-      "catalog": "www.fliphtml5.com"
+      "catalog": "www.fliphtml5.com",
+      "description": "This is a description of Project Two. It covers different aspects and uses different technologies."
+
 
     },
     {
@@ -23,7 +26,9 @@
       "image": "https://img.freepik.com/premium-photo/model-building-with-orange-white-bricks_910054-4465.jpg",      
       "date": "2021",
       "location": "Maltepe/İstanbul",
-      "catalog": "www.fliphtml5.com"
+      "catalog": "www.fliphtml5.com",
+      "description": "Project Three is all about innovation and forward-thinking solutions in the industry."
+
     },
     {
       "id": 4,
@@ -31,7 +36,9 @@
       "image": "https://img.freepik.com/premium-photo/3d-building-model_677801-637.jpg",      
       "date": "2022",
       "location": "Pendik/İstanbul",
-      "catalog": "www.fliphtml5.com"
+      "catalog": "www.fliphtml5.com",
+      "description": "This is a description of Project four. Used be ghosts are living there."
+
     },
     {
       "id": 5,
@@ -39,7 +46,9 @@
       "image": "https://img.freepik.com/premium-photo/3d-building-model_677801-642.jpg",      
       "date": "2024",
       "location": "Gebze/Kocaeli",
-      "catalog": "www.fliphtml5.com"
+      "catalog": "www.fliphtml5.com",
+      "description": "This is a description of Project five. what a house damn."
+
 
     },
     {
@@ -48,7 +57,9 @@
       "image": "https://img.freepik.com/premium-photo/photo-modern-corporate-architecture-can-be-seen-cityscape-office-buildings_812426-26359.jpg",      
       "date": "2023",
       "location": "Kandıra/Kocaeli",
-      "catalog": "www.fliphtml5.com"
+      "catalog": "www.fliphtml5.com",
+      "description": "This is a description of Project six. I'm just Ken."
+
     }
   ]
   

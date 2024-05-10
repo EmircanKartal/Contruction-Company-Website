@@ -1,4 +1,3 @@
-// ProjectCarousel.tsx
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
@@ -6,7 +5,7 @@ import { GiClick } from "react-icons/gi"; // Click icon
 import styles from "./ProjectCarousel.module.css";
 
 interface Project {
-  id: number;
+  id: string; // Changed from number to string
   title: string;
   image: string;
   date?: string;
@@ -25,18 +24,17 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  // Ensure that the slider only shows 3 slides consistently
   const settings = {
     infinite: true,
     vertical: true,
     verticalSwiping: true,
     slidesToShow: 3,
-    slidesToScroll: 1, // Scrolls one slide at a time
+    slidesToScroll: 1,
     focusOnSelect: true,
     centerMode: true,
-    draggable: true, // Enable mouse drag
-    swipe: true, // Enable swipe gesture
-    swipeToSlide: true, // Snap to nearest slide when swiped
+    draggable: true,
+    swipe: true,
+    swipeToSlide: true,
     beforeChange: (current: number, next: number) => setActiveIndex(next),
   };
 
@@ -49,12 +47,10 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
     return styles.slide;
   };
 
-  const generateProjectLink = (title: string) =>
-    `/project/${encodeURIComponent(title.replace(/\s+/g, "-").toLowerCase())}`;
+  const generateProjectLink = (id: string) =>
+    `/project/${encodeURIComponent(id)}`;
 
-  // Effect hook to re-trigger the fade-in animation for the project details
   useEffect(() => {
-    // Ensure the element is an HTMLElement to access offsetWidth
     const projectWrapper = document.querySelector(
       `.${styles.projectImageWrapper}`
     ) as HTMLElement;
@@ -78,8 +74,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
           </div>
         ))}
       </Slider>
-
-      <Link to={generateProjectLink(selectedProject.title)}>
+      <Link to={generateProjectLink(selectedProject.id)}>
         <div className={styles.projectImageWrapper}>
           <img
             src={selectedProject.image}
@@ -88,7 +83,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
           />
           <div className={styles.projectOverlay}>
             <h2 className={styles.projectTitle}>{selectedProject.title}</h2>
-            <GiClick className={styles.clickIcon} /> {/* Click icon */}
+            <GiClick className={styles.clickIcon} />
             <p className={styles.projectDate}>
               {selectedProject.date || "N/A"}
             </p>

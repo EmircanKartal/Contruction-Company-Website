@@ -1,19 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Projects.module.css";
 import Footer from "../Footer/Footer";
 import PhotoSlider from "../Slider/Slider";
 import image1 from "../assets/footage1.png";
 import image2 from "../assets/footage2.png";
 import image3 from "../assets/footage3.png";
-
-// Import the project data from the JSON file
 import projectsData from "./projects.json";
 
 const Projects = () => {
   const slides = [
-    { image: image1, text: "KALİTE" },
-    { image: image2, text: "GÜVEN" },
-    { image: image3, text: "YENİLİK" },
+    { image: image1, text: "image-1" },
+    { image: image2, text: "image-2" },
+    { image: image3, text: "image-3" },
   ];
 
   return (
@@ -23,9 +22,9 @@ const Projects = () => {
         <h1 className={styles.heading}>Projeler</h1>
         <div className={styles.projects}>
           {projectsData.map((project) => (
-            <a
+            <Link
               key={project.id}
-              href={`/${project.title.toLowerCase().replace(" ", "-")}`}
+              to={`/projects/${project.id}`}
               className={styles.projectCard}
             >
               <img
@@ -37,7 +36,7 @@ const Projects = () => {
                 <span className={styles.projectTitle}>{project.title}</span>
                 <span className={styles.readMore}>Detaylı Bilgi →</span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
