@@ -24,7 +24,7 @@ const Projects = () => {
           {projectsData.map((project) => (
             <Link
               key={project.id}
-              to={`/projects/${project.id}`}
+              to={`/project/${project.id}`}
               className={styles.projectCard}
             >
               <img
