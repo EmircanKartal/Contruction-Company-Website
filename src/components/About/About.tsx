@@ -6,7 +6,6 @@ import Map from "../Contact/MapComponent";
 import image1 from "../assets/footage1.png";
 import image2 from "../assets/footage2.png";
 import image3 from "../assets/footage3.png";
-import { FaAlignCenter } from "react-icons/fa";
 const About = () => {
   const slides = [
     { image: image1, text: "image-1" },
@@ -20,7 +19,9 @@ const About = () => {
         <h1 className={styles.foregroundText}>Hakkımızda</h1>
         <div className={styles.firmInfo}>
           <div className={styles.textWithBackground}>
-            <p className={styles.backgroundText}>Vizyon</p>
+            <p className={styles.backgroundText} style={{ marginTop: 140 }}>
+              Vizyon
+            </p>
             <p>
               Geçmişten Günümüze Yolculuk Yüz Yapı, köklü bir tecrübe ve
               birikime sahip kurucuları tarafından hayata geçirilmiştir. İnşaat
@@ -32,7 +33,9 @@ const About = () => {
             </p>
           </div>
           <div className={styles.textWithBackground}>
-            <p className={styles.backgroundText}>Misyon</p>
+            <p className={styles.backgroundText} style={{ marginTop: 140 }}>
+              Misyon
+            </p>
             <p>
               Vizyonumuz ve Misyonumuz Yüz Yapı, her projesinde
               sürdürülebilirlik ilkesini ön planda tutar ve çevreye duyarlı

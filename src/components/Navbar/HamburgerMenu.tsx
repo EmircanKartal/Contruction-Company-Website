@@ -14,7 +14,7 @@ const HamburgerMenu = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen); // This will toggle the state of isOpen
   const iconStyle = {
-    color: "orange",
+    color: "gold",
     fontSize: "35px", // Adjust size as needed
     textShadow: "2px 2px 4px rgba(0, 0, 0, 1)", // This adds a black shadow
   };

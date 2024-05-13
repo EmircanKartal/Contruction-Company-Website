@@ -1,0 +1,79 @@
+.addNew{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: #ffffff;
+    text-align: center;
+}
+
+.addnewContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+    text-align: center;
+}
+
+.login{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: #ffffff1d;
+    text-align: center;
+}
+
+.loginContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+    text-align: center;
+}
+
+.headingLogin{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    color: #2B2B2B;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    animation: slideInFromRight 1.5s forwards;
+}
+
+.button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 223px;
+    font-weight: 400; 
+    margin-top: 20px;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif; 
+    height: 45px;
+}
+
+.customButton {
+    background-color: #007FFF; /* Deep blue color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-family: 'Roboto', sans-serif; /* You can choose your preferred font */
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.customButton:hover {
+    background-color: #0059b2; /* Slightly darker blue on hover */
+}
+
+.customButton:active {
+    background-color: #004080; /* Even darker blue when pressed */
+}

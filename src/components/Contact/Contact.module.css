@@ -1,156 +1,149 @@
+/* Contact.module.css */
 .contact {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    background: #ffffff;
-    text-align: center;
-  }
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #ffffff;
+  text-align: center;
+  
+}
+
+.contactInside {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #ffffff;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.contactContainer {
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.contactHeading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  color: #2B2B2B;
+  margin-bottom: 20px;
+}
+
+.contactText {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.formArea {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 800px;
+
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column; /* Stack the form fields vertically */
+  align-items: center; /* Align form fields to the center */
+  justify-content: center;
+}
+
+.contactForm input,
+.contactForm select,
+.contactForm textarea,
+.contactForm button {
+  width: 100%;
+  padding: 10px 10px; /* Adjusted to reduce vertical padding */
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-size: 18px; /* Keeping the font size consistent */
+  box-sizing: border-box; /* Ensures padding and border are included in the width/height */
+  line-height: normal; /* Adjust line-height for better vertical centering */
+  height: 40px; /* Setting a specific height might help in some cases */
+}
+
+.contactForm textarea {
+  grid-column: span 2;
+  height: auto; 
+  padding: 10px;
+}
+
+.contactForm button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 223px;
+  font-weight:400; 
+  margin-top: 20px;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif; 
+  height: 45px;
+}
+
+.contactForm button:hover {
+  background-color: #004494;
+}
+
+.mapAndInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  width: 90%;
+  max-width: 1200px;
+}
 
 .mapContainer {
-  /* your styles here, e.g., to handle the size or position of the map */
-  width: 100%; /* example to make the map responsive */
-  height: 450px; /* fixed height or as required */
-  overflow: hidden; /* optional, depending on your design */
+  width: 100%; 
+  flex-grow: 1; 
+  margin: 0; 
+  background-color: #f0f0f0; 
 }
-  .topHeader {
-    background: #0066FF; /* Blue Header */
-    color: white;
-    padding: 15px 0;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
+
+.mapContainerContact {
+  flex: 1;
+  background-color: #f0f0f0; 
+  padding: 0;
+  margin-right: 20px;
+}
+
+.contactDetails {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.address, .email, .phone {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .contactForm {
+    grid-template-columns: 1fr;
   }
-  
-  .contentContainer {
-    position: relative;
-    display: flex;
+
+  .mapAndInfo {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 15px;
-    text-align: center;
   }
-  
-  .backgroundText {
-    position: absolute;
-    z-index: 0;
-    font-size: 120px; /* Adjust size as needed */
-    font-weight: bold;
-    opacity: 0.1; /* Transparency */
-    color: #000000;
-    user-select: none; /* Prevent selection of background text */
-  }
-  
-  .foregroundText {
-    position: relative;
-    z-index: 1;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 36px;
-    color: #2B2B2B;
+
+  .mapContainerContact, .mapContainer {
+    width: 100%;
+    margin-right: 0;
     margin-bottom: 20px;
   }
-  
-  .paragraphWrapper {
-    position: relative;
-    margin-bottom: 40px;
+
+  .contactDetails {
     width: 100%;
     text-align: center;
   }
-  
-  .firmInfo {
-    position: relative;
-    z-index: 1;
-    font-size: 18px;
-    color: #444;
-    max-width: 600px;
-    margin-top: 20px;
-    line-height: 1.6;
-  }
-  
-  .footer {
-    background: #000;
-    color: #fff;
-    margin-top: 100px;
-    padding: 60px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .footerLinks a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-  }
-  
-  .footerInfo p, .footerCopyright p {
-    margin: 5px 0;
-  }
-  
-  .footerInfo a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .coordinates {
-    margin: 0 0 16px;
-    font-family: Montserrat;
-    font-size: 24px;
-    color: white;
-    text-align: center;
-  }
-  
-  /* Responsive Design: Adjusts styles for screens smaller than 768px */
-  @media (max-width: 768px) {
-    .backgroundText {
-      font-size: 80px;
-    }
-  
-    .foregroundText {
-      font-size: 24px;
-    }
-  
-    .firmInfo {
-      font-size: 16px;
-      margin-top: 15px;
-    }
-  
-    .footer {
-      padding: 30px;
-      margin-top: 50px;
-    }
-  
-    .coordinates {
-      font-size: 20px;
-    }
-  }
-  
-  /* Responsive Design: Adjusts styles for screens smaller than 480px */
-  @media (max-width: 480px) {
-    .backgroundText {
-      font-size: 50px;
-    }
-  
-    .foregroundText {
-      font-size: 20px;
-    }
-  
-    .firmInfo {
-      font-size: 14px;
-      margin-top: 10px;
-    }
-  
-    .footer {
-      padding: 20px;
-      margin-top: 30px;
-    }
-  
-    .coordinates {
-      font-size: 18px;
-    }
-  }
-  
+}

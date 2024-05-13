@@ -6,6 +6,8 @@ import ProjectDetail from "./components/Projects/ProjectDetail"; // Import the P
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Navbar from "./components/Navbar/Navbar";
+import Login from "./components/Post/Login";
+import Add from "./components/Post/AddNew";
 import styles from "./App.module.css";
 
 const App = () => {
@@ -20,6 +22,8 @@ const App = () => {
           {/* Dynamic route for project details */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/add" element={<Add />} />
         </Routes>
       </div>
     </Router>

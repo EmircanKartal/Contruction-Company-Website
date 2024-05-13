@@ -7,7 +7,7 @@
 }
 
 .topHeader {
-  background: #0066FF; /* Blue Header */
+  background: #0066FF; 
   color: white;
   padding: 15px 0;
   font-family: 'Montserrat', sans-serif;
@@ -29,7 +29,7 @@
 .backgroundText {
   position: absolute;
   z-index: 0;
-  font-size: 160px; /* Adjust size as needed */
+  font-size: 160px; 
   font-weight: bold;
   top: calc(1.5% - 80px); 
   left: calc(37% - 75px);   
@@ -37,24 +37,25 @@
   animation: slideInFromRight 1.5s forwards;
   user-select: none; 
   margin-left: 150px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); 
+  white-space: nowrap;
 }
 .textWithBackground {
-  position: relative; /* Essential for absolute positioning of children */
-  margin-bottom: 20px; /* Add space between paragraphs */
+  position: relative; 
+  margin-bottom: 20px;
 }
 
 p {
-  position: relative; /* Bring paragraph on top of the background text */
-  z-index: 1; /* Higher than the background text */
+  position: relative;
+  z-index: 1; 
 }
 .foregroundText {
-  position: relative;
-  z-index: 1;
   font-family: 'Montserrat', sans-serif;
   font-size: 36px;
   color: #2B2B2B;
   margin-bottom: 20px;
+  margin-top: 60px;
+  animation: slideInFromRight 1.5s forwards;
 }
 
 .paragraphWrapper {
@@ -104,16 +105,16 @@ p {
 
 .coordinates {
   margin: 0 0 16px;
-  font-family: Montserrat;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   color: white;
   text-align: center;
 }
 
-/* Responsive Design: Adjusts styles for screens smaller than 768px */
-@media (max-width: 768px) {
+@media (max-width: 988px) {
   .backgroundText {
-    font-size: 80px;
+    font-size: 130px;
+    margin-top: -800px;
   }
 
   .foregroundText {
@@ -135,10 +136,10 @@ p {
   }
 }
 
-/* Responsive Design: Adjusts styles for screens smaller than 480px */
 @media (max-width: 480px) {
   .backgroundText {
-    font-size: 50px;
+    font-size: 115px;
+    margin-left: 112px;
   }
 
   .foregroundText {
