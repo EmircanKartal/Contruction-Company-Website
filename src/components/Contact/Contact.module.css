@@ -50,8 +50,8 @@
 
 .contactForm {
   display: flex;
-  flex-direction: column; /* Stack the form fields vertically */
-  align-items: center; /* Align form fields to the center */
+  flex-direction: column; 
+  align-items: center; 
   justify-content: center;
 }
 
@@ -60,13 +60,13 @@
 .contactForm textarea,
 .contactForm button {
   width: 100%;
-  padding: 10px 10px; /* Adjusted to reduce vertical padding */
+  padding: 10px 10px; 
   margin-bottom: 20px;
   border-radius: 4px;
-  font-size: 18px; /* Keeping the font size consistent */
-  box-sizing: border-box; /* Ensures padding and border are included in the width/height */
-  line-height: normal; /* Adjust line-height for better vertical centering */
-  height: 40px; /* Setting a specific height might help in some cases */
+  font-size: 18px; 
+  box-sizing: border-box; 
+  line-height: normal; 
+  height: 40px; 
 }
 
 .contactForm textarea {

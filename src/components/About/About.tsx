@@ -6,6 +6,7 @@ import Map from "../Contact/MapComponent";
 import image1 from "../assets/footage1.png";
 import image2 from "../assets/footage2.png";
 import image3 from "../assets/footage3.png";
+import Divider from "@mui/material/Divider";
 const About = () => {
   const slides = [
     { image: image1, text: "image-1" },
@@ -32,6 +33,8 @@ const About = () => {
               göstermiştir.
             </p>
           </div>
+          <Divider sx={{ my: 5 }} />
+
           <div className={styles.textWithBackground}>
             <p className={styles.backgroundText} style={{ marginTop: 140 }}>
               Misyon

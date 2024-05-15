@@ -6,7 +6,12 @@ import {
   Typography,
   Card,
   CardContent,
+  CardActions,
+  Box,
 } from "@mui/material";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PhoneIcon from "@mui/icons-material/Phone";
+import EmailIcon from "@mui/icons-material/Email";
 import styles from "./Contact.module.css";
 import Footer from "../Footer/Footer";
 import PhotoSlider from "../Slider/Slider";
@@ -52,7 +57,9 @@ const Contact = () => {
       />
       <div className={styles.contactInside}>
         <div className={styles.contactContainer}>
-          <h1 className={styles.contactHeading}>Bize Ulaşın</h1>
+          <h1 className={styles.contactHeading} style={{ marginTop: -160 }}>
+            Bize Ulaşın
+          </h1>
           <Typography variant="body1" gutterBottom>
             Projelerimizle ilgili herhangi bir sorunuz varsa aşağıdaki formdan
             bize ulaşabilirsiniz. Size bir tık uzaktayız. En kısa sürede dönüş
@@ -137,15 +144,110 @@ const Contact = () => {
             </form>
           </div>
         </div>
-        <div className={styles.contactDetails}>
-          <p className={styles.address}>
-            Ömerağa, Cumhuriyet Cd. 138-144, 41300 İzmit/Kocaeli
-          </p>
-          <p className={styles.email}>iletisim@yuzyapi.com</p>
-          <p className={styles.phone}>+90 541 234 24 86</p>
-        </div>
+        <h1 className={styles.contactHeading} style={{ marginTop: -280 }}>
+          YÜZ YAPI İNŞ. LTD. ŞTİ.
+        </h1>
+        <Box
+          sx={{
+            mt: 4,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 2,
+            flexWrap: "wrap",
+          }}
+        >
+          <Card
+            sx={{
+              width: 350,
+              height: 150,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center", // Added to center content horizontally
+              "&:hover": {
+                backgroundColor: "#0056b3",
+                color: "#fff",
+                cursor: "pointer",
+              },
+              fontFamily: "Arial, sans-serif", // More robust font family
+            }}
+            onClick={() =>
+              window.open(
+                "https://maps.google.com?q=Ömerağa, Cumhuriyet Cd. 138-144, 41300 İzmit - Kocaeli/Türkiye"
+              )
+            }
+          >
+            <CardContent sx={{ display: "flex", alignItems: "center" }}>
+              <LocationOnIcon sx={{ mr: 1, fontSize: "30px" }} />{" "}
+              {/* Increased icon size */}
+              <Typography variant="body1" style={{ fontSize: 18 }}>
+                {" "}
+                {/* Increased font size */}
+                Ömerağa, Cumhuriyet Cd. 138-144, 41300 İzmit - Kocaeli/Türkiye
+              </Typography>
+            </CardContent>
+          </Card>
+          <Card
+            sx={{
+              width: 350,
+              height: 150,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              "&:hover": {
+                backgroundColor: "#0056b3",
+                color: "#fff",
+                cursor: "pointer",
+              },
+              fontFamily: "Arial, sans-serif",
+            }}
+            onClick={() => (window.location.href = "tel:+905412342486")}
+          >
+            <CardContent sx={{ display: "flex", alignItems: "center" }}>
+              <PhoneIcon sx={{ mr: 1, fontSize: "30px", marginRight: 2 }} />{" "}
+              {/* Increased icon size */}
+              <Typography variant="body1" style={{ fontSize: 22 }}>
+                {" "}
+                {/* Increased font size */}
+                +90 541 234 24 86
+              </Typography>
+            </CardContent>
+          </Card>
+          <Card
+            sx={{
+              width: 350,
+              height: 150,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center", // Added to center content horizontally
+              "&:hover": {
+                backgroundColor: "#0056b3",
+                color: "#fff",
+                cursor: "pointer",
+              },
+              fontFamily: "Arial, sans-serif", // More robust font family
+            }}
+            onClick={() =>
+              (window.location.href = "mailto:iletisim@yuzyapi.com")
+            }
+          >
+            <CardContent sx={{ display: "flex", alignItems: "center" }}>
+              <EmailIcon sx={{ mr: 1, fontSize: "30px", marginRight: 2 }} />{" "}
+              {/* Increased icon size */}
+              <Typography variant="body1" style={{ fontSize: 22 }}>
+                {" "}
+                {/* Increased font size */}
+                iletisim@yuzyapi.com
+              </Typography>
+            </CardContent>
+          </Card>
+        </Box>
       </div>
-
+      <div style={{ marginTop: 80 }}></div>
       <Footer />
     </div>
   );

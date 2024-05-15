@@ -12,6 +12,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 600px;
+    margin-left: 200px;
     padding: 30px 15px;
     text-align: center;
 }
@@ -43,7 +45,15 @@
     animation: slideInFromRight 1.5s forwards;
 }
 
-.button {
+.addNewHeader {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    color: #2B2B2B;
+    margin-bottom: 20px;
+  }
+  
+
+.loginContainer .button {
     background-color: #0056b3;
     color: white;
     border: none;

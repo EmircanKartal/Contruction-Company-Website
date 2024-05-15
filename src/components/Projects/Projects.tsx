@@ -7,6 +7,7 @@ import image1 from "../assets/footage1.png";
 import image2 from "../assets/footage2.png";
 import image3 from "../assets/footage3.png";
 import projectsData from "./projects.json";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const Projects = () => {
   const slides = [
@@ -34,7 +35,9 @@ const Projects = () => {
               />
               <div className={styles.overlay}>
                 <span className={styles.projectTitle}>{project.title}</span>
-                <span className={styles.readMore}>Detaylı Bilgi →</span>
+                <span className={styles.readMore}>
+                  Detaylı Bilgi <FaArrowRightLong style={{ marginLeft: 4 }} />
+                </span>
               </div>
             </Link>
           ))}
