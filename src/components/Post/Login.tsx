@@ -9,12 +9,24 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (username === "yuzyapi" && password === "6161") {
-      localStorage.setItem("isLoggedIn", "true");
-      navigate("/add");
-    } else {
-      alert("Kullanıcı adı ve şifrenizi kontrol edin!");
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (response.ok) {
+        localStorage.setItem("isLoggedIn", "true");
+        navigate("/add");
+      } else {
+        alert("Kullanıcı adı ve şifrenizi kontrol edin!");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
     }
   };
 

@@ -87,3 +87,7 @@
 .customButton:active {
     background-color: #004080; /* Even darker blue when pressed */
 }
+.notchedOutline {
+    border-color: white !important;
+  }
+  
