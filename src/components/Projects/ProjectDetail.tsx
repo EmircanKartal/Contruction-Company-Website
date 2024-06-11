@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./ProjectDetail.css";
-import image1 from "../assets/footage1.png";
-import image2 from "../assets/footage2.png";
-import image3 from "../assets/footage3.png";
-import Footer from "../Footer/Footer";
-import PhotoSlider from "../Slider/Slider";
 import axios from "axios";
+import Footer from "../Footer/Footer";
+import NotFound from "../assets/404notfound.png";
+import { BiArrowBack } from "react-icons/bi"; // Importing react icon
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import TopContainer from "../TopContainer/TopContainer";
 
 interface Project {
   id: number;
@@ -23,75 +23,137 @@ interface Project {
 const ProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId?: string }>();
   const [project, setProject] = useState<Project | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProject = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/api/projects/${projectId}`
-        );
-        setProject(response.data);
-      } catch (error) {
-        console.error("Error fetching project:", error);
+      if (projectId) {
+        try {
+          const response = await axios.get(
+            `http://localhost:8080/api/projects/${projectId}`
+          );
+          setProject(response.data);
+        } catch (error) {
+          console.error("Error fetching project:", error);
+        } finally {
+          setLoading(false);
+        }
       }
     };
 
-    if (projectId) {
-      fetchProject();
-    }
+    fetchProject();
   }, [projectId]);
 
-  if (!project) {
-    return <div className="not-found">Proje bulunamadı</div>;
+  const openGallery = (index: number) => {
+    setCurrentImageIndex(index);
+    setIsGalleryOpen(true);
+  };
+
+  const closeGallery = () => {
+    setIsGalleryOpen(false);
+  };
+
+  const showPreviousImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? project!.images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const showNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === project!.images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+      </div>
+    );
   }
 
-  const slides = [
-    { image: image1, text: "image-1" },
-    { image: image2, text: "image-2" },
-    { image: image3, text: "image-3" },
-  ];
+  if (!project) {
+    return (
+      <div className="not-found-container">
+        <img src={NotFound} alt="Not Found" className="not-found-image" />
+        <button className="back-button" onClick={() => navigate("/projects")}>
+          <BiArrowBack size={24} style={{ marginRight: 5 }} /> Projelere Geri
+          Dön
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="project-details">
-      <PhotoSlider slides={slides} />
-      <div className="project-detail-container">
-        <h1 className="project-title">{project.title}</h1>
-        <div className="project-info">
+      <TopContainer />
+
+      <h1 className="project-title">{project.title}</h1>
+      <div className="project-info">
+        <div className="info-row">
           <div className="info-block">
             <span className="info-title">BAŞLAMA TARİHİ</span>
-            <div className="info-value">{project.date}</div>
+            <span className="info-value">{project.date}</span>
           </div>
           <div className="info-block">
             <span className="info-title">KONUM</span>
-            <div className="info-value">{project.location}</div>
+            <span className="info-value">{project.location}</span>
           </div>
           <div className="info-block">
             <span className="info-title">PROJE TİPİ</span>
-            <div className="info-value">{project.type}</div>
+            <span className="info-value">{project.type}</span>
           </div>
           <div className="info-block">
             <span className="info-title">ONLINE KATALOG</span>
-            <div className="info-value">
-              <a
-                href={project.catalog}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "#666ff" }}
-              >
-                Kataloğu Görüntüle
-              </a>
-            </div>
+            <a
+              className="info-value"
+              href={project.catalog}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Kataloğu Görüntüle
+            </a>
           </div>
         </div>
         <p className="project-description">{project.description}</p>
-        {project.images.length > 0 && (
-          <img
-            src={`data:image/png;base64,${project.images[0]}`} // Adjust the image display
-            alt={project.title}
-            className="project-image"
-          />
-        )}
       </div>
+
+      <div className="photo-gallery">
+        {project.images.map((img, index) => (
+          <img
+            key={index}
+            src={`data:image/png;base64,${img}`}
+            alt={project.title}
+            className="gallery-image"
+            onClick={() => openGallery(index)}
+          />
+        ))}
+      </div>
+
+      {isGalleryOpen && (
+        <div className="lightbox">
+          <span className="close" onClick={closeGallery}>
+            &times;
+          </span>
+          <img
+            src={`data:image/png;base64,${project.images[currentImageIndex]}`}
+            alt="Gallery Image"
+            className="lightbox-image"
+          />
+          <FaArrowLeft
+            className="arrow left-arrow"
+            onClick={showPreviousImage}
+          />
+          <FaArrowRight className="arrow right-arrow" onClick={showNextImage} />
+        </div>
+      )}
+
+      <div style={{ marginBottom: 80 }}></div>
+
       <Footer />
     </div>
   );

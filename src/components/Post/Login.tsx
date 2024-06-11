@@ -38,8 +38,8 @@ const Login: React.FC = () => {
 
   const slides = [
     { image: require("../assets/footage1.png"), text: "image-1" },
-    { image: require("../assets/footage2.png"), text: "image-2" },
-    { image: require("../assets/footage3.png"), text: "image-3" },
+    { image: require("../assets/footage2.jpg"), text: "image-2" },
+    { image: require("../assets/footage3.jpg"), text: "image-3" },
   ];
 
   return (
@@ -53,7 +53,28 @@ const Login: React.FC = () => {
               id="username"
               label="Username"
               variant="outlined"
-              className={styles.input}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "white",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "white",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "white",
+                  },
+                },
+                "& .MuiInputBase-input": {
+                  color: "white",
+                },
+                "& .MuiFormLabel-root": {
+                  color: "white",
+                },
+                "& .MuiFormLabel-root.Mui-focused": {
+                  color: "white",
+                },
+              }}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -67,7 +88,28 @@ const Login: React.FC = () => {
               label="Password"
               type="password"
               variant="outlined"
-              className={styles.input}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "white",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "white",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "white",
+                  },
+                },
+                "& .MuiInputBase-input": {
+                  color: "white",
+                },
+                "& .MuiFormLabel-root": {
+                  color: "white",
+                },
+                "& .MuiFormLabel-root.Mui-focused": {
+                  color: "white",
+                },
+              }}
               value={password}
               onKeyPress={handleKeyPress}
               onChange={(e) => setPassword(e.target.value)}

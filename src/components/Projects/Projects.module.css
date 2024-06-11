@@ -1,12 +1,16 @@
+.projectsContainer {
+  background-color: rgb(255, 255, 255);
+}
+
 .heading {
   font-weight: bolder;
   text-align: center;
   padding: 30px;
   position: relative;
   z-index: 1;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 36px;
-  color: #2B2B2B;
+  font-family: 'Termina', sans-serif;
+  font-size: 48px;
+  color: rgb(0, 0, 0); /* Changed to white */
   margin-bottom: 2px;
   margin-top: 60px;
 }

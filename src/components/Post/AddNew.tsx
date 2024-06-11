@@ -154,6 +154,8 @@ const AddNew: React.FC = () => {
   const backgroundColor = isDarkMode ? "#001f3f" : "#ffffff";
   const textColor = isDarkMode ? "white" : "black";
   const titleColor = isDarkMode ? "#01FF70" : "#0056b3";
+  const borderColor = theme === "dark" ? "#ffffff" : "#ccc"; // Example for light gray border
+  const uploadBackgroundColor = theme === "dark" ? "#003167" : "#f0f0f0"; // Light gray for light theme
 
   return (
     <div style={{ display: "flex" }}>
@@ -194,7 +196,10 @@ const AddNew: React.FC = () => {
                     onChange={handleChange}
                     InputLabelProps={{ style: { color: textColor } }}
                     InputProps={{
-                      style: { color: textColor },
+                      style: {
+                        color: textColor,
+                        borderColor: theme === "dark" ? "#ffffff" : "#000000",
+                      },
                       classes: { notchedOutline: styles.notchedOutline },
                     }}
                   />
@@ -210,7 +215,10 @@ const AddNew: React.FC = () => {
                       style: { color: textColor },
                     }}
                     InputProps={{
-                      style: { color: textColor },
+                      style: {
+                        color: textColor,
+                        borderColor: theme === "dark" ? "#ffffff" : "#000000",
+                      },
                       classes: { notchedOutline: styles.notchedOutline },
                     }}
                     value={formData.startDate}
@@ -224,7 +232,10 @@ const AddNew: React.FC = () => {
                     name="location"
                     InputLabelProps={{ style: { color: textColor } }}
                     InputProps={{
-                      style: { color: textColor },
+                      style: {
+                        color: textColor,
+                        borderColor: theme === "dark" ? "#ffffff" : "#000000",
+                      },
                       classes: { notchedOutline: styles.notchedOutline },
                     }}
                     value={formData.location}
@@ -238,7 +249,10 @@ const AddNew: React.FC = () => {
                     name="projectType"
                     InputLabelProps={{ style: { color: textColor } }}
                     InputProps={{
-                      style: { color: textColor },
+                      style: {
+                        color: textColor,
+                        borderColor: theme === "dark" ? "#ffffff" : "#000000",
+                      },
                       classes: { notchedOutline: styles.notchedOutline },
                     }}
                     value={formData.projectType}
@@ -253,7 +267,10 @@ const AddNew: React.FC = () => {
                     type="url"
                     InputLabelProps={{ style: { color: textColor } }}
                     InputProps={{
-                      style: { color: textColor },
+                      style: {
+                        color: textColor,
+                        borderColor: theme === "dark" ? "#ffffff" : "#000000",
+                      },
                       classes: { notchedOutline: styles.notchedOutline },
                     }}
                     value={formData.catalogLink}
@@ -267,7 +284,10 @@ const AddNew: React.FC = () => {
                     name="firmName"
                     InputLabelProps={{ style: { color: textColor } }}
                     InputProps={{
-                      style: { color: textColor },
+                      style: {
+                        color: textColor,
+                        borderColor: theme === "dark" ? "#ffffff" : "#000000",
+                      },
                       classes: { notchedOutline: styles.notchedOutline },
                     }}
                     value={formData.firmName}
@@ -283,12 +303,16 @@ const AddNew: React.FC = () => {
                     rows={4}
                     InputLabelProps={{ style: { color: textColor } }}
                     InputProps={{
-                      style: { color: textColor },
+                      style: {
+                        color: textColor,
+                        borderColor: theme === "dark" ? "#ffffff" : "#000000",
+                      },
                       classes: { notchedOutline: styles.notchedOutline },
                     }}
                     value={formData.description}
                     onChange={handleChange}
                   />
+
                   <input
                     type="file"
                     accept="image/*"
@@ -330,24 +354,29 @@ const AddNew: React.FC = () => {
                 <Card
                   {...getRootProps()}
                   sx={{
-                    padding: 6,
-                    margin: 6,
                     textAlign: "center",
-                    backgroundColor: "#003167",
-                    border: "dotted",
-                    borderWidth: "2.5px",
-                    borderColor: "#d4d4db",
-                    height: 200,
-                    width: 500,
+                    backgroundColor: uploadBackgroundColor,
+                    border: `dotted 2.5px ${borderColor}`,
+                    height: 300,
+                    width: 600,
                     marginTop: 10,
                   }}
                 >
                   <CardContent>
                     <input {...getInputProps()} />
                     <LuImagePlus
-                      style={{ fontSize: 50, marginTop: 20, color: "#ffffff" }}
+                      style={{
+                        fontSize: 50,
+                        marginTop: 60,
+                        color: theme === "dark" ? "#ffffff" : "#000000", // White for dark mode, black for light mode
+                      }}
                     />
-                    <p style={{ color: "#ffffff", fontSize: 22 }}>
+                    <p
+                      style={{
+                        color: theme === "dark" ? "#ffffff" : "#000000", // White for dark mode, black for light mode
+                        fontSize: 22,
+                      }}
+                    >
                       Dosyaları seçin veya sürükleyin
                     </p>
                   </CardContent>

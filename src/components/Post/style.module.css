@@ -22,7 +22,8 @@
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background: #ffffff1d;
+    background: #000e2be1;
+
     text-align: center;
 }
 
@@ -34,12 +35,13 @@
     justify-content: center;
     padding: 30px 15px;
     text-align: center;
+
 }
 
 .headingLogin{
     font-family: 'Montserrat', sans-serif;
     font-size: 36px;
-    color: #2B2B2B;
+    color: #f8f4f4;
     margin-bottom: 40px;
     margin-top: 20px;
     animation: slideInFromRight 1.5s forwards;

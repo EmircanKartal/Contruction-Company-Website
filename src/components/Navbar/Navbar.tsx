@@ -34,7 +34,6 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className={`${styles.navbar} ${!visible ? styles.hide : ""}`}>
-      <div className={styles.logo}>Logo</div>
       <HamburgerMenu />
       <div
         className={`${styles.navLinks} ${isOpen ? styles.show : styles.hide}`}

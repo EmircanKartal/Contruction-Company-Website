@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Projects.module.css";
 import Footer from "../Footer/Footer";
-import PhotoSlider from "../Slider/Slider";
+import TopContainer from "../TopContainer/TopContainer";
 import image1 from "../assets/footage1.png";
 import image2 from "../assets/footage2.png";
 import image3 from "../assets/footage3.png";
@@ -38,16 +38,10 @@ const Projects: React.FC = () => {
     fetchProjects();
   }, []);
 
-  const slides = [
-    { image: image1, text: "image-1" },
-    { image: image2, text: "image-2" },
-    { image: image3, text: "image-3" },
-  ];
-
   return (
     <>
-      <div>
-        <PhotoSlider slides={slides} />
+      <div className={styles.projectsContainer}>
+        <TopContainer />
         <h1 className={styles.heading}>Projeler</h1>
         <div className={styles.projects}>
           {projects.map((project) => (

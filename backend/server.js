@@ -43,6 +43,7 @@ const upload = multer({
   storage,
   limits: {
     fieldSize: 25 * 1024 * 1024, // 25 MB
+    files: 75, // Maximum number of files
   },
 });
 
@@ -157,8 +158,37 @@ app.get('/api/projects', (req, res) => {
   });
 });
 
+// Fetch specific project details including images
+app.get('/api/projects/:id', (req, res) => {
+  const { id } = req.params;
+  const query = `
+    SELECT p.*, i.image
+    FROM Projects p
+    LEFT JOIN Images i ON p.id = i.project_id
+    WHERE p.id = ?
+  `;
+  
+  db.all(query, [id], (err, rows) => {
+    if (err) {
+      return res.status(400).json({ error: err.message });
+    }
 
-app.put('/api/projects/:id', upload.array('photos', 10), (req, res) => {
+    if (rows.length === 0) {
+      res.status(404).json({ message: 'Project not found' });
+      return;
+    }
+
+    const project = {
+      ...rows[0],
+      images: rows.map(row => row.image ? bufferToBase64(row.image) : null).filter(img => img != null)
+    };
+
+    res.json(project);
+  });
+});
+
+
+app.put('/api/projects/:id', upload.array('photos', 40), (req, res) => {
   const { title, date, location, catalog, description, type, firm } = req.body;
   const id = req.params.id;
   const photos = req.files;

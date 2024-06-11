@@ -1,0 +1,47 @@
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .theme-toggle-label {
+    font-family: "Nunito, sans-serif";
+    font-size: 16px;
+    color: #ffffff;
+  }
+  
+  .sun-icon,
+  .moon-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  .react-switch-bg {
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .react-switch-handle {
+    transition: transform 0.4s ease-in-out;
+  }
+  
+  .react-switch-checked {
+    background-color: #070707 !important;
+  }
+  
+  .react-switch-unchecked {
+    background-color: #f5f0d9 !important;
+  }
+  
+  .react-switch-handle:before {
+    content: "";
+    display: block;
+  }
+  
+  .react-switch-checked .react-switch-handle:before {
+    content: "";
+  }
+  
