@@ -52,7 +52,7 @@ const Projects: React.FC = () => {
             >
               {project.images.length > 0 ? (
                 <img
-                  src={`data:image/png;base64,${project.images[0]}`} // Adjust the image display
+                  src={`data:image/png;base64,${project.images[1]}`} // Adjust the image display
                   alt={project.title}
                   className={styles.projectImage}
                 />

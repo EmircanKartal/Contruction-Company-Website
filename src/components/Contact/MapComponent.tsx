@@ -20,5 +20,4 @@ const MapComponent: React.FC = () => {
     </div>
   );
 };
-
 export default MapComponent;

@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Post/Login";
 import Add from "./components/Post/AddNew";
 import styles from "./App.module.css";
+import NotFound from "./components/NotFound/NotFound"; // Import the NotFound component
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/add" element={<Add />} />
+          <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
         </Routes>
       </div>
     </Router>

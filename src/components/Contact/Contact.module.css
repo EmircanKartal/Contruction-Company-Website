@@ -1,11 +1,9 @@
-/* Contact.module.css */
 .contact {
   margin: 0;
   padding: 0;
   min-height: 100vh;
   background: #ffffff;
   text-align: center;
-  
 }
 
 .contactInside {
@@ -19,7 +17,7 @@
 }
 
 .contactContainer {
-  width: 90%;
+  width: 100%;
   max-width: 800px;
   margin: auto;
   padding: 20px;
@@ -27,7 +25,7 @@
 }
 
 .contactHeading {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Termina', sans-serif;
   font-size: 36px;
   color: #2B2B2B;
   margin-bottom: 20px;
@@ -45,13 +43,12 @@
   border-radius: 8px;
   margin: 20px auto;
   max-width: 800px;
-
 }
 
 .contactForm {
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
@@ -60,18 +57,18 @@
 .contactForm textarea,
 .contactForm button {
   width: 100%;
-  padding: 10px 10px; 
+  padding: 10px 10px;
   margin-bottom: 20px;
   border-radius: 4px;
-  font-size: 18px; 
-  box-sizing: border-box; 
-  line-height: normal; 
-  height: 40px; 
+  font-size: 18px;
+  box-sizing: border-box;
+  line-height: normal;
+  height: 40px;
 }
 
 .contactForm textarea {
   grid-column: span 2;
-  height: auto; 
+  height: auto;
   padding: 10px;
 }
 
@@ -82,10 +79,10 @@
   border-radius: 4px;
   cursor: pointer;
   width: 223px;
-  font-weight:400; 
+  font-weight: 400;
   margin-top: 20px;
   font-size: 18px;
-  font-family: 'Montserrat', sans-serif; 
+  font-family: 'Montserrat', sans-serif;
   height: 45px;
 }
 
@@ -102,15 +99,15 @@
 }
 
 .mapContainer {
-  width: 100%; 
-  flex-grow: 1; 
-  margin: 0; 
-  background-color: #f0f0f0; 
+  width: 100%;
+  flex-grow: 1;
+  margin: 0;
+  background-color: #f0f0f0;
 }
 
 .mapContainerContact {
   flex: 1;
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
   padding: 0;
   margin-right: 20px;
 }
@@ -119,12 +116,23 @@
   flex: 1;
   padding: 20px;
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
 
-.address, .email, .phone {
+.address,
+.email,
+.phone {
   margin-bottom: 10px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2;
+  flex-wrap: nowrap;
 }
 
 @media (max-width: 768px) {
@@ -136,7 +144,8 @@
     flex-direction: column;
   }
 
-  .mapContainerContact, .mapContainer {
+  .mapContainerContact, 
+  .mapContainer {
     width: 100%;
     margin-right: 0;
     margin-bottom: 20px;
@@ -145,5 +154,16 @@
   .contactDetails {
     width: 100%;
     text-align: center;
+  }
+
+  /* Ensure the cards stack vertically */
+  .cardContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .MuiCard-root {
+    width: 100%;
+    margin-bottom: 20px;
   }
 }

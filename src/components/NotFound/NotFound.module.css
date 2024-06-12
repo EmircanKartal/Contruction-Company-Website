@@ -1,0 +1,35 @@
+/* src/components/NotFound/NotFound.module.css */
+.notFoundContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
+  
+  .notFoundImage {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .back-button {
+    position: absolute;
+    top: 630px; /* Adjust the top position */
+    left: 212px; /* Adjust the left position */
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 300px;
+    font-weight: 400; 
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif; 
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }

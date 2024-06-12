@@ -68,6 +68,23 @@ const ProjectDetail: React.FC = () => {
     );
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (isGalleryOpen) {
+        if (event.key === "ArrowLeft") {
+          showPreviousImage();
+        } else if (event.key === "ArrowRight") {
+          showNextImage();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isGalleryOpen]);
+
   if (loading) {
     return (
       <div className="loading-container">
@@ -81,8 +98,7 @@ const ProjectDetail: React.FC = () => {
       <div className="not-found-container">
         <img src={NotFound} alt="Not Found" className="not-found-image" />
         <button className="back-button" onClick={() => navigate("/projects")}>
-          <BiArrowBack size={24} style={{ marginRight: 5 }} /> Projelere Geri
-          Dön
+          <BiArrowBack size={24} style={{ marginRight: 20 }} /> Projeler
         </button>
       </div>
     );
