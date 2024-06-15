@@ -35,7 +35,7 @@ const EmailDialog: React.FC<EmailDialogProps> = ({
   selectedEmail,
 }) => {
   const dialogStyle = {
-    backgroundColor: "#ffd9001b",
+    backgroundColor: "transparent",
     color: "#000000",
     borderRadius: "10px",
     padding: "20px",
