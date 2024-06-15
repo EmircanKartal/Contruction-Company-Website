@@ -26,7 +26,8 @@ import axios from "axios";
 import Sidebar from "./Sidebar";
 import ProjectList from "./ProjectList";
 import AdminCredentials from "./AdminCredentials";
-import { useTheme } from "./ThemeContext"; // Import the theme context
+import ClientInbox from "./ClientInbox";
+import { useTheme } from "./ThemeContext";
 import PhotoSlider from "../Slider/Slider";
 import image1 from "../assets/footage1.png";
 import image2 from "../assets/footage2.png";
@@ -153,9 +154,9 @@ const AddNew: React.FC = () => {
   const isDarkMode = theme === "dark";
   const backgroundColor = isDarkMode ? "#001f3f" : "#ffffff";
   const textColor = isDarkMode ? "white" : "black";
-  const titleColor = isDarkMode ? "#01FF70" : "#0056b3";
-  const borderColor = theme === "dark" ? "#ffffff" : "#ccc"; // Example for light gray border
-  const uploadBackgroundColor = theme === "dark" ? "#003167" : "#f0f0f0"; // Light gray for light theme
+  const titleColor = isDarkMode ? "#ffffff" : "#000000";
+  const borderColor = theme === "dark" ? "#ffffff" : "#ccc";
+  const uploadBackgroundColor = theme === "dark" ? "#003167" : "#f0f0f0";
 
   return (
     <div style={{ display: "flex" }}>
@@ -164,7 +165,7 @@ const AddNew: React.FC = () => {
       <div
         style={{
           flex: 1,
-          padding: "20px",
+          padding: "0px",
           backgroundColor: backgroundColor,
           minHeight: "100vh",
           color: textColor,
@@ -175,7 +176,10 @@ const AddNew: React.FC = () => {
             className={styles.addNew}
             style={{ backgroundColor: backgroundColor, marginTop: 120 }}
           >
-            <h1 className={styles.addNewHeader} style={{ color: titleColor }}>
+            <h1
+              className={styles.addNewHeader}
+              style={{ color: titleColor, fontFamily: "Termina" }}
+            >
               Yeni Proje
             </h1>
             <Grid container spacing={2} justifyContent="center">
@@ -320,9 +324,17 @@ const AddNew: React.FC = () => {
                     onChange={handleChange}
                     multiple
                     style={{ display: "none" }}
-                    id="photos"
+                    id="fileInput"
                   />
-
+                  <label htmlFor="fileInput" style={{ cursor: "pointer" }}>
+                    <Button
+                      component="span"
+                      variant="contained"
+                      color="primary"
+                    >
+                      Upload Photos
+                    </Button>
+                  </label>
                   <Button
                     type="submit"
                     sx={{
@@ -481,6 +493,7 @@ const AddNew: React.FC = () => {
         )}
         {view === "list" && <ProjectList />}
         {view === "admin" && <AdminCredentials />}
+        {view === "clientInbox" && <ClientInbox />}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.76rem 2rem;
+  margin-top: 14px;
   background-color: #ffffff00;
   position: fixed;
   width: 100%;
@@ -22,14 +23,13 @@
   color: #000;
   font-size: large;
 }
-
 .navLink {
   color: #fefefe;
   text-decoration: none;
   padding: 0.5rem 1rem;
-  font-weight: lighter;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.06rem;
+  font-family: 'Inter', sans-serif;
+  font-weight:bold;
+  font-size: 1.46rem;
   margin: 0 8px;
   text-shadow:
     -1px -1px 1px #000,

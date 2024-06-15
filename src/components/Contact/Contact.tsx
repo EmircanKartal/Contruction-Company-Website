@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import {
   TextField,
   Button,
@@ -6,12 +6,10 @@ import {
   Typography,
   Card,
   CardContent,
-  CardActions,
   Box,
 } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
-import EmailIcon from "@mui/icons-material/Email";
 import { GoMail } from "react-icons/go";
 
 import styles from "./Contact.module.css";
@@ -24,7 +22,7 @@ interface FormState {
   message: string;
   email: string;
   phone: string;
-  topic: string;
+  emailSubject: string;
 }
 
 const Contact = () => {
@@ -34,7 +32,7 @@ const Contact = () => {
     message: "",
     email: "",
     phone: "",
-    topic: "",
+    emailSubject: "",
   });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +41,44 @@ const Contact = () => {
       ...form,
       [name]: value,
     });
+  };
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+
+    console.log("Submitting form", form);
+
+    try {
+      const response = await fetch("http://localhost:8080/api/inbox", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Name: form.firstName,
+          Surname: form.lastName,
+          Email: form.email,
+          Phone: form.phone,
+          Message: form.message,
+          EmailSubject: form.emailSubject,
+        }),
+      });
+
+      console.log("Response status", response.status);
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("Response data", responseData);
+        alert("Form başarıyla gönderildi!");
+      } else {
+        const errorData = await response.json();
+        console.error("Error data", errorData);
+        alert(`Form gönderilemedi: ${errorData.error}`);
+      }
+    } catch (error) {
+      console.error("Network error", error);
+      alert("Formu gönderirken bir hata oluştu.");
+    }
   };
 
   return (
@@ -154,11 +190,7 @@ const Contact = () => {
             sağlayacağız.
           </Typography>
           <div className={styles.formArea}>
-            <form
-              className={styles.contactForm}
-              action="https://getform.io/f/jbwxeyoa"
-              method="POST"
-            >
+            <form className={styles.contactForm} onSubmit={handleSubmit}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -202,10 +234,21 @@ const Contact = () => {
                     onChange={handleChange}
                   />
                 </Grid>
+                <Grid item xs={12} sm={12}>
+                  <TextField
+                    required
+                    label="Mesaj Konusu"
+                    variant="outlined"
+                    fullWidth
+                    name="emailSubject"
+                    value={form.emailSubject}
+                    onChange={handleChange}
+                  />
+                </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
-                    label="Message"
+                    label="Mesajınız"
                     variant="outlined"
                     fullWidth
                     multiline

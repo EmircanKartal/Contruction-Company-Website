@@ -1,0 +1,94 @@
+.dialog-container {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f4f5f7;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .dialog-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 7px;
+    text-align: center;
+  }
+  
+  .dialog-subtitle {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #555;
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+  }
+  
+  .dialog-content-text {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.6;
+    margin-top: 20px;
+  }
+  
+  .dialog-actions button:hover {
+    background-color: #0056b3;
+  }
+  
+  .info-row {
+    display: flex;
+    align-items: center;
+    margin-top: 6px;
+  }
+  
+  .info-icon {
+    margin-right: 10px;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  
+  .email-section {
+    margin-top: 20px;
+  }
+  
+  .email-section h5 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .email-section p {
+    font-size: 1em;
+    color: #333;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .sender-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .date-info {
+    font-size: 0.9em;
+    color: #999;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  

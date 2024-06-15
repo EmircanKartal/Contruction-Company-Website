@@ -3,11 +3,12 @@ import { List, ListItem, Card, CardContent, Typography } from "@mui/material";
 import { LuImagePlus } from "react-icons/lu";
 import { CiBoxList } from "react-icons/ci";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { MdOutlineWbSunny } from "react-icons/md"; // Sun icon
-import { FaRegMoon } from "react-icons/fa"; // Moon icon
-import { useTheme } from "./ThemeContext"; // Import the theme context
+import { MdOutlineWbSunny } from "react-icons/md";
+import { FaRegMoon } from "react-icons/fa";
+import { useTheme } from "./ThemeContext";
 import Switch from "react-switch";
-import "./Sidebar.css"; // Import custom CSS for the toggle switch
+import "./Sidebar.css";
+import { IoIosContacts } from "react-icons/io";
 
 interface SidebarProps {
   onSelect: (view: string) => void;
@@ -22,14 +23,54 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelect }) => {
         width: "280px",
         backgroundColor: "#0056b3",
         padding: "20px",
-        height: "100vh", // Ensure it fills the viewport height
+        height: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         gap: "20px",
       }}
     >
-      <List component="nav" style={{ width: "100%", marginTop: 170 }}>
+      <List component="nav" style={{ width: "100%", marginTop: 35 }}>
+        <ListItem
+          button
+          onClick={() => onSelect("clientInbox")}
+          style={{ justifyContent: "center" }}
+        >
+          <Card
+            style={{
+              width: "100%",
+              backgroundColor: "#0056b3",
+              color: "white",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              padding: "20px",
+              cursor: "pointer",
+            }}
+          >
+            <CardContent
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <IoIosContacts size={50} />
+              <Typography
+                variant="h6"
+                style={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: 19,
+                  fontFamily: "Termina, sans-serif",
+                  marginTop: "10px",
+                }}
+              >
+                Müşteri
+              </Typography>
+            </CardContent>
+          </Card>
+        </ListItem>
         <ListItem
           button
           onClick={() => onSelect("add")}
@@ -60,7 +101,8 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelect }) => {
                 style={{
                   color: "white",
                   fontWeight: "bold",
-                  fontFamily: "Nunito, sans-serif",
+                  fontSize: 19,
+                  fontFamily: "Termina, sans-serif",
                   marginTop: "10px",
                 }}
               >
@@ -99,7 +141,8 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelect }) => {
                 style={{
                   color: "white",
                   fontWeight: "bold",
-                  fontFamily: "Nunito, sans-serif",
+                  fontSize: 18,
+                  fontFamily: "Termina, sans-serif",
                   marginTop: "10px",
                 }}
               >
@@ -138,7 +181,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelect }) => {
                 style={{
                   color: "white",
                   fontWeight: "bold",
-                  fontFamily: "Nunito, sans-serif",
+                  fontFamily: "Termina, sans-serif",
                   marginTop: "10px",
                 }}
               >
@@ -204,7 +247,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelect }) => {
             />
             <div
               className="theme-toggle-label"
-              style={{ marginTop: 8, fontFamily: "Arial, sans-serif" }}
+              style={{ marginTop: 8, fontFamily: "Termina, sans-serif" }}
             >
               {theme === "dark" ? "Dark Mode" : "Light Mode"}
             </div>

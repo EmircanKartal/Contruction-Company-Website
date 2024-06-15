@@ -18,8 +18,9 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 const db = new sqlite3.Database('./database.db', (err) => {
   if (err) {
     console.error(err.message);
+  } else {
+    console.log('SQLite veritabanına bağlandı.');
   }
-  console.log('SQLite veritabanına bağlandı.');
 });
 
 // Enable Write-Ahead Logging mode
@@ -39,6 +40,7 @@ const storage = multer.diskStorage({
   }
 });
 
+// Configure Multer middleware
 const upload = multer({
   storage,
   limits: {
@@ -96,37 +98,37 @@ app.put('/api/admin', (req, res) => {
 
 // Projects tablosu için endpointler
 app.post('/api/projects', upload.array('photos', 10), (req, res) => {
-    const { title, date, location, catalog, description, type, firm } = req.body;
-    const photos = req.files;
+  const { title, date, location, catalog, description, type, firm } = req.body;
+  const photos = req.files;
 
-    db.run(`INSERT INTO Projects (title, date, location, catalog, description, type, firm) VALUES (?, ?, ?, ?, ?, ?, ?)`, 
-    [title, date, location, catalog, description, type, firm], function (err) {
-        if (err) {
-            return res.status(400).json({ error: err.message });
-        }
-        const projectId = this.lastID;
+  db.run(`INSERT INTO Projects (title, date, location, catalog, description, type, firm) VALUES (?, ?, ?, ?, ?, ?, ?)`, 
+  [title, date, location, catalog, description, type, firm], function (err) {
+      if (err) {
+          return res.status(400).json({ error: err.message });
+      }
+      const projectId = this.lastID;
 
-        // Insert images into Images table
-        photos.forEach(photo => {
-            const imagePath = `/uploads/${photo.filename}`;
-            fs.readFile(photo.path, (err, data) => {
-                if (err) {
-                    return res.status(500).json({ error: err.message });
-                }
-                db.run(`INSERT INTO Images (project_id, image) VALUES (?, ?)`, [projectId, data], function (err) {
-                    if (err) {
-                        return res.status(400).json({ error: err.message });
-                    }
-                });
-            });
-        });
+      // Insert images into Images table
+      photos.forEach(photo => {
+          const imagePath = `/uploads/${photo.filename}`;
+          fs.readFile(photo.path, (err, data) => {
+              if (err) {
+                  return res.status(500).json({ error: err.message });
+              }
+              db.run(`INSERT INTO Images (project_id, image) VALUES (?, ?)`, [projectId, data], function (err) {
+                  if (err) {
+                      return res.status(400).json({ error: err.message });
+                  }
+              });
+          });
+      });
 
-        res.json({ message: 'Proje ve resimler başarıyla oluşturuldu', id: projectId });
-    });
+      res.json({ message: 'Proje ve resimler başarıyla oluşturuldu', id: projectId });
+  });
 });
 
 const bufferToBase64 = (buffer) => {
-  return buffer.toString('base64');
+return buffer.toString('base64');
 };
 
 app.get('/api/projects', (req, res) => {
@@ -246,6 +248,75 @@ app.delete('/api/projects/:id', (req, res) => {
         });
     });
 });
+
+// Endpoint for submitting a new entry to the Inbox table
+app.post('/api/inbox', (req, res) => {
+  const { Name, Surname, Email, Phone, Message, EmailSubject} = req.body;
+
+  console.log("Received data:", req.body);
+
+  const query = `INSERT INTO Inbox (Name, Surname, Email, Phone, Message, EmailSubject) VALUES (?, ?, ?, ?, ?, ?)`;
+  db.run(query, [Name, Surname, Email, Phone, Message, EmailSubject], function (err) {
+    if (err) {
+      console.error("Database error:", err.message);
+      return res.status(400).json({ error: err.message });
+    }
+    console.log("Entry successfully added to Inbox, ID:", this.lastID);
+    res.json({ message: 'Entry successfully added to Inbox', id: this.lastID });
+  });
+});
+
+// Endpoint to fetch all entries from the Inbox table
+app.get('/api/inbox', (req, res) => {
+  const query = `SELECT * FROM Inbox`;
+
+  db.all(query, [], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    res.json(rows);
+  });
+});
+
+// Endpoint to delete a specific entry by ID from the Inbox table
+app.delete('/api/inbox/:id', (req, res) => {
+  const { id } = req.params;
+
+  const query = `DELETE FROM Inbox WHERE ID = ?`;
+  db.run(query, [id], function (err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (this.changes === 0) {
+      return res.status(404).json({ message: 'Message not found' });
+    }
+
+    res.json({ message: 'Message successfully deleted' });
+  });
+});
+
+// Endpoint to delete multiple entries by their IDs from the Inbox table
+app.post('/api/inbox/delete-multiple', (req, res) => {
+  const { ids } = req.body;
+
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return res.status(400).json({ message: 'Invalid request: no IDs provided' });
+  }
+
+  const placeholders = ids.map(() => '?').join(',');
+  const query = `DELETE FROM Inbox WHERE ID IN (${placeholders})`;
+
+  db.run(query, ids, function (err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    res.json({ message: 'Messages successfully deleted' });
+  });
+});
+
 
 // Start the server
 app.listen(PORT, () => {

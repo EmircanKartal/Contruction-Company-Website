@@ -48,7 +48,7 @@ const AdminCredentials: React.FC = () => {
   const backgroundColor = isDarkMode ? "#001f3f" : "#ffffff";
   const textColor = isDarkMode ? "white" : "black";
   const cardBackgroundColor = isDarkMode ? "#0056b3" : "#f1f1f5";
-
+  const headerColor = isDarkMode ? "#ffffff" : "#000000";
   return (
     <Box className={styles.adminCredentials}>
       <h1
@@ -56,9 +56,10 @@ const AdminCredentials: React.FC = () => {
         style={{
           display: "flex",
           justifyContent: "center",
-          color: "#01FF70",
+          color: headerColor,
           marginTop: 120,
           marginBottom: 40,
+          fontFamily: "Termina",
         }}
       >
         Admin

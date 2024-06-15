@@ -92,4 +92,17 @@
 .notchedOutline {
     border-color: white !important;
   }
+
+  @keyframes highlight {
+    from {
+      background-color: #003366;
+    }
+    to {
+      background-color: #0059b2dc;
+    }
+  }
+  
+  .highlight {
+    animation: highlight 0.6s forwards;
+  }
   
