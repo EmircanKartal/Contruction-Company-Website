@@ -4,24 +4,25 @@
   min-height: 100vh;
   background: #ffffff;
   text-align: center;
+  overflow-x: hidden; /* Add this line to prevent horizontal overflow */
 }
 
 .contactInside {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  background: #ffffff;
   align-items: center;
-  justify-content: center;
-  padding: 20px 0;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box; /* Add this line to include padding in the element's total width */
 }
 
 .contactContainer {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 30px;
   width: 100%;
   max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  text-align: center;
+  box-sizing: border-box; /* Add this line to include padding in the element's total width */
 }
 
 .contactHeading {
@@ -37,12 +38,23 @@
   margin-bottom: 20px;
 }
 
+.contractorSection {
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-family: 'Ariel', sans-serif;
+  font-variant: small-caps;
+  font-weight: 300;
+  font-size: 18px;
+}
+
 .formArea {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
   margin: 20px auto;
   max-width: 800px;
+  box-sizing: border-box; /* Add this line to include padding in the element's total width */
 }
 
 .contactForm {
@@ -61,7 +73,7 @@
   margin-bottom: 20px;
   border-radius: 4px;
   font-size: 18px;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Add this line to include padding in the element's total width */
   line-height: normal;
   height: 40px;
 }
@@ -90,76 +102,48 @@
   background-color: #004494;
 }
 
-.mapAndInfo {
+.iconTextGrid {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: start;
-  width: 90%;
-  max-width: 1200px;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
-.mapContainer {
-  width: 100%;
-  flex-grow: 1;
-  margin: 0;
-  background-color: #f0f0f0;
+.iconTextItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.mapContainerContact {
-  flex: 1;
-  background-color: #f0f0f0;
-  padding: 0;
-  margin-right: 20px;
-}
-
-.contactDetails {
-  flex: 1;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
-
-.address,
-.email,
-.phone {
+.icon {
   margin-bottom: 10px;
 }
 
-.cardContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2;
-  flex-wrap: nowrap;
+.text {
+  text-align: center;
 }
 
 @media (max-width: 768px) {
-  .contactForm {
-    grid-template-columns: 1fr;
-  }
-
-  .mapAndInfo {
-    flex-direction: column;
-  }
-
-  .mapContainerContact, 
-  .mapContainer {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
-
-  .contactDetails {
-    width: 100%;
-    text-align: center;
-  }
-
-  /* Ensure the cards stack vertically */
-  .cardContainer {
+  .iconTextGrid {
     flex-direction: column;
     align-items: center;
+  }
+
+  .iconTextItem {
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+
+  .icon {
+    margin-right: 10px;
+    margin-bottom: 0;
+  }
+
+  .text {
+    text-align: left;
   }
 
   .MuiCard-root {

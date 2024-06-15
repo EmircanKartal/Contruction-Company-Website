@@ -9,6 +9,8 @@ import footage2 from "../assets/footage2.png";
 import footage3 from "../assets/footage4.png";
 import footage4 from "../assets/footage6.png";
 import footage5 from "../assets/footage5.png";
+import Yuzyapilogo from "../assets/TopContainerImg.png";
+import ScrollToTopButton from "./ScrollToTopButton"; // Import the ScrollToTopButton
 
 const Home: React.FC = () => {
   return (
@@ -17,6 +19,8 @@ const Home: React.FC = () => {
       <div className={styles.heroContainer}>
         <div className={styles.textContainer}>
           <img src={logo} alt="logo" className={styles.logo} />
+          <img src={Yuzyapilogo} alt="yuzyapi" className={styles.yuzyapilogo} />
+
           <div>
             <h1 className={styles.dots}>..</h1>
             <h1 className={styles.yuzYapi}>YUZ</h1>
@@ -85,6 +89,8 @@ const Home: React.FC = () => {
       <div className={styles.footerContainer}>
         <Footer />
       </div>
+      {/* Scroll-to-Top Button */}
+      <ScrollToTopButton />
     </div>
   );
 };

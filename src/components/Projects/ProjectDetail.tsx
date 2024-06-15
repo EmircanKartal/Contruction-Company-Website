@@ -7,6 +7,7 @@ import NotFound from "../assets/404notfound.png";
 import { BiArrowBack } from "react-icons/bi"; // Importing react icon
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import TopContainer from "../TopContainer/TopContainer";
+import ScrollToTopButton from "../Home/ScrollToTopButton";
 
 interface Project {
   id: number;
@@ -171,6 +172,8 @@ const ProjectDetail: React.FC = () => {
       <div style={{ marginBottom: 80 }}></div>
 
       <Footer />
+      {/* Scroll-to-Top Button */}
+      <ScrollToTopButton />
     </div>
   );
 };

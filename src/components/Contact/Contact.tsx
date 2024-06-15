@@ -1,20 +1,13 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import {
-  TextField,
-  Button,
-  Grid,
-  Typography,
-  Card,
-  CardContent,
-  Box,
-} from "@mui/material";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import PhoneIcon from "@mui/icons-material/Phone";
+import { TextField, Button, Grid, Typography } from "@mui/material";
 import { GoMail } from "react-icons/go";
-
-import styles from "./Contact.module.css";
 import Footer from "../Footer/Footer";
 import TopContainer from "../TopContainer/TopContainer";
+import ScrollToTopButton from "../Home/ScrollToTopButton";
+import { MdOutlinePhoneIphone, MdOutlineMyLocation } from "react-icons/md";
+import { IoLocationOutline } from "react-icons/io5";
+import { BsBuildings } from "react-icons/bs";
+import styles from "./Contact.module.css";
 
 interface FormState {
   firstName: string;
@@ -42,6 +35,7 @@ const Contact = () => {
       [name]: value,
     });
   };
+
   const formatDate = (date: Date): string => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -58,7 +52,7 @@ const Contact = () => {
 
     console.log("Submitting form", form);
 
-    const currentDateTime = formatDate(new Date()); // Format current date and time
+    const currentDateTime = formatDate(new Date());
 
     try {
       const response = await fetch("http://localhost:8080/api/inbox", {
@@ -101,99 +95,33 @@ const Contact = () => {
       <div className={styles.contactInside}>
         <div className={styles.contactContainer}>
           <h1 className={styles.contactHeading} style={{ marginTop: 20 }}>
+            <BsBuildings size={40} style={{ marginRight: 21 }} />
             YÜZ YAPI İNŞ. LTD. ŞTİ.
           </h1>
-          <Box
-            className={styles.cardContainer}
-            sx={{
-              mt: 4,
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: 2,
-              flexWrap: "nowrap",
-            }}
-          >
-            <Card
-              sx={{
-                width: 400,
-                height: 150,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                "&:hover": {
-                  backgroundColor: "#ffd700",
-                  color: "#000000",
-                  cursor: "pointer",
-                },
-                fontFamily: "Arial, sans-serif",
-              }}
-              onClick={() =>
-                window.open(
-                  "https://maps.google.com?q=Ömerağa, Cumhuriyet Cd. 138-144, 41300 İzmit - Kocaeli/Türkiye"
-                )
-              }
-            >
-              <CardContent sx={{ display: "flex", alignItems: "center" }}>
-                <LocationOnIcon sx={{ mr: 1, fontSize: "30px" }} />
-                <Typography variant="body1" style={{ fontSize: 18 }}>
-                  Ömerağa, Cumhuriyet Cd. 138-144, 41300 İzmit - Kocaeli/Türkiye
-                </Typography>
-              </CardContent>
-            </Card>
-            <Card
-              sx={{
-                width: 400,
-                height: 150,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                "&:hover": {
-                  backgroundColor: "#ffd700",
-                  color: "#000000",
-                  cursor: "pointer",
-                },
-                fontFamily: "Arial, sans-serif",
-              }}
-              onClick={() => (window.location.href = "tel:+905412342486")}
-            >
-              <CardContent sx={{ display: "flex", alignItems: "center" }}>
-                <PhoneIcon sx={{ mr: 1, fontSize: "30px", marginRight: 2 }} />
-                <Typography variant="body1" style={{ fontSize: 22 }}>
-                  +90 541 234 24 86
-                </Typography>
-              </CardContent>
-            </Card>
-            <Card
-              sx={{
-                width: 400,
-                height: 150,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                "&:hover": {
-                  backgroundColor: "#ffd700",
-                  color: "#000000",
-                  cursor: "pointer",
-                },
-                fontFamily: "Arial, sans-serif",
-              }}
-              onClick={() =>
-                (window.location.href = "mailto:iletisim@yuzyapi.com")
-              }
-            >
-              <CardContent sx={{ display: "flex", alignItems: "center" }}>
-                <GoMail style={{ fontSize: "30px", marginRight: 17 }} />
-                <Typography variant="body1" style={{ fontSize: 22 }}>
-                  iletisim@yuzyapi.com
-                </Typography>
-              </CardContent>
-            </Card>
-          </Box>
+
+          <Grid container spacing={2} className={styles.iconTextGrid}>
+            <Grid item xs={12} sm={6} md={3} className={styles.iconTextItem}>
+              <MdOutlineMyLocation size={28} className={styles.icon} />
+              <Typography className={styles.text}>
+                Yahya Kaptan Mah Kandıra Yolu Cad. No:18, D:1
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} className={styles.iconTextItem}>
+              <IoLocationOutline size={28} className={styles.icon} />
+              <Typography className={styles.text}>İzmit/Kocaeli</Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} className={styles.iconTextItem}>
+              <GoMail size={28} className={styles.icon} />
+              <Typography className={styles.text}>
+                adembey@contact.com
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} className={styles.iconTextItem}>
+              <MdOutlinePhoneIphone size={35} className={styles.icon} />
+              <Typography className={styles.text}>+90 541 354 86 74</Typography>
+            </Grid>
+          </Grid>
+
           <h1 className={styles.contactHeading} style={{ marginTop: 80 }}>
             Bize Ulaşın
           </h1>
@@ -247,7 +175,7 @@ const Contact = () => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12} sm={12}>
+                <Grid item xs={12}>
                   <TextField
                     required
                     label="Mesaj Konusu"
@@ -291,6 +219,7 @@ const Contact = () => {
       </div>
       <div style={{ marginTop: 80 }}></div>
       <Footer />
+      <ScrollToTopButton />
     </div>
   );
 };

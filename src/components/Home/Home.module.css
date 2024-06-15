@@ -38,8 +38,6 @@
   color: white;
 }
 
-
-
 .projectName {
   font-size: 24px;
   margin: 0;
@@ -55,6 +53,11 @@
   margin-left: 160px;
   margin-right: 30px; /* Adjust space between logo and text */
 }
+.yuzyapilogo{
+  width: 200px;
+  display: none;
+}
+
 @keyframes slideInFromLeft {
   0% {
     transform: translateX(-120%);
@@ -70,6 +73,7 @@
   animation: slideInFromLeft 2s ease-out forwards;
   animation-delay: 0s;
 }
+
 .dots {
   position: absolute;
   top: -112px; /* Adjust position as needed */
@@ -81,8 +85,8 @@
   font-family: 'Arial', sans-serif;
   color: white;
   animation-delay: 0.2s; /* Adjust delay to sync with .yuzYapi */
-
 }
+
 .heroImage {
   width: auto;
   height: 97vh;
@@ -120,9 +124,11 @@
   height: auto;
   margin-left: 130px;
 }
+
 .sneakPeekText {
   font-size: 14px; /* Slightly smaller text */
 }
+
 .detailsLink {
   text-decoration: none;
   color: #000;
@@ -206,7 +212,7 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .yuzYapi {
     font-size: 60px;
   }
@@ -236,19 +242,53 @@
   }
 }
 
-@media (max-width: 400px) {
+
+@media (max-width: 480px) {
+  .heroContainer {
+    flex-direction: column;
+    height: 25vh; /* Increase height for small screens */
+  }
+
   .yuzYapi {
     font-size: 40px;
+    text-align: center;
+    display: none;
+
   }
 
   .dots {
-    top: -50px;
-    left: 200px;
+    top: -30px; /* Adjusted for better alignment */
+    left: 50%; /* Centered horizontally */
+    transform: translateX(-50%);
     font-size: 60px;
+    display: none; /* Hide the dots on small screens */
+  }
+
+  .heroImage {
+    display: none; /* Hide the hero image */
+  }
+
+  .logo {
+    width: 100px; /* Adjusted size for smaller screens */
+    margin-top: 50px;
+    margin-left: 0; /* Adjust space between logo and text */
+    margin-right: 18px; /* Adjust space between logo and text */
+    display: none;
+  }
+ .yuzyapilogo{
+  margin-top: 40px;
+  width:68%;
+  height: auto;
+  display: block;
+ }
+  .textContainer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 
   .tepeLoftSneakPeekHeader {
-    font-size: 20px;
+    font-size: 28px;
     margin-left: 50px;
   }
 
@@ -256,11 +296,15 @@
     font-size: 14px;
   }
 
+  .sneakPeekImage {
+    margin-left: 30px;
+  }
+
   .sneakPeekGrid {
     padding: 0 20px;
   }
 
   .loftSpec {
-    width: 100%;
+    width: 80%;
   }
 }

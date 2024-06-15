@@ -8,6 +8,7 @@ import image2 from "../assets/footage2.png";
 import image3 from "../assets/footage3.png";
 import { FaArrowRightLong } from "react-icons/fa6";
 import axios from "axios";
+import ScrollToTopButton from "../Home/ScrollToTopButton";
 
 interface Project {
   id: number;
@@ -74,6 +75,8 @@ const Projects: React.FC = () => {
         </div>
       </div>
       <Footer />
+      {/* Scroll-to-Top Button */}
+      <ScrollToTopButton />
     </>
   );
 };
