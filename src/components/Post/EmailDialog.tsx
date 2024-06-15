@@ -49,6 +49,9 @@ const EmailDialog: React.FC<EmailDialogProps> = ({
       PaperProps={{
         style: dialogStyle,
       }}
+      BackdropProps={{
+        style: { backgroundColor: "#ffd9000c" }, // This will change the outer part color
+      }}
     >
       <div className="dialog-container">
         <div className="header-container">
