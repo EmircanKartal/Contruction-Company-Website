@@ -10,12 +10,13 @@ import {
 import "./EmailDialog.css"; // Ensure this is imported
 import { MdAlternateEmail, MdPhone, MdClose } from "react-icons/md";
 import { GoMail } from "react-icons/go";
+import zIndex from "@mui/material/styles/zIndex";
 
 interface Email {
   ID: number;
   EmailSubject: string;
   Email: string;
-  date: string;
+  Time: string;
   Name: string;
   Surname: string;
   Phone: string;
@@ -34,12 +35,14 @@ const EmailDialog: React.FC<EmailDialogProps> = ({
   selectedEmail,
 }) => {
   const dialogStyle = {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#ffd9001b",
     color: "#000000",
     borderRadius: "10px",
     padding: "20px",
     maxWidth: "600px",
+    width: "90%",
     margin: "0 auto",
+    zIndex: 0,
   };
 
   return (
@@ -50,10 +53,16 @@ const EmailDialog: React.FC<EmailDialogProps> = ({
         style: dialogStyle,
       }}
       BackdropProps={{
-        style: { backgroundColor: "#ffd9000c" }, // This will change the outer part color
+        style: { backgroundColor: "#fffff" },
       }}
     >
       <div className="dialog-container">
+        <IconButton
+          onClick={() => setIsEmailModalOpen(false)}
+          className="close-button"
+        >
+          <MdClose style={{ color: "#aaa", fontSize: "24px" }} />
+        </IconButton>
         <div className="header-container">
           <div className="sender-info">
             <MdAlternateEmail
@@ -63,15 +72,6 @@ const EmailDialog: React.FC<EmailDialogProps> = ({
               From: {selectedEmail?.Name} {selectedEmail?.Surname}
             </Typography>
           </div>
-          <IconButton
-            onClick={() => setIsEmailModalOpen(false)}
-            className="close-button"
-          >
-            <MdClose style={{ color: "#aaa", fontSize: "24px" }} />
-          </IconButton>
-          <Typography variant="subtitle1" className="date-info">
-            {selectedEmail?.date}
-          </Typography>
         </div>
         <DialogTitle>
           <Typography variant="h5" className="dialog-title">
@@ -94,6 +94,13 @@ const EmailDialog: React.FC<EmailDialogProps> = ({
           <DialogContentText className="dialog-content-text">
             {selectedEmail?.Message}
           </DialogContentText>
+          <Typography
+            variant="subtitle1"
+            className="date-info"
+            style={{ marginRight: 25, marginTop: 20 }}
+          >
+            {selectedEmail?.Time}
+          </Typography>
         </DialogContent>
       </div>
     </Dialog>

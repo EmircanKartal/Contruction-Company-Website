@@ -28,7 +28,7 @@ interface Email {
   ID: number;
   EmailSubject: string;
   Email: string;
-  date: string;
+  Time: string;
   Name: string;
   Surname: string;
   Phone: string;
@@ -139,7 +139,7 @@ const ClientInbox: React.FC = () => {
   const indexOfFirstEmail = indexOfLastEmail - emailsPerPage;
   const currentEmails = emails.slice(indexOfFirstEmail, indexOfLastEmail);
   const headerColor = isDarkMode ? "#ffffff" : "#000000";
-
+  const EmailItemMailInfo = isDarkMode ? "#ffffff" : "#000000";
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const dialogStyle = {
@@ -238,10 +238,14 @@ const ClientInbox: React.FC = () => {
               </Grid>
               <Grid item xs>
                 <Typography variant="h6">{email.EmailSubject}</Typography>
-                <Typography variant="body2" color="textSecondary">
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  style={{ color: EmailItemMailInfo }}
+                >
                   {email.Email}
                 </Typography>
-                <Typography variant="body2">{email.date}</Typography>
+                <Typography variant="body2">{email.Time}</Typography>
                 <Typography variant="body2">{email.Message}</Typography>
               </Grid>
               <Grid item>
@@ -265,14 +269,14 @@ const ClientInbox: React.FC = () => {
           disabled={isFirstPage}
           sx={getButtonTextStyle(!isFirstPage, isFirstPage)}
         >
-          Previous
+          Geri
         </Button>
         <Button
           onClick={() => paginate(currentPage + 1)}
           disabled={isLastPage}
           sx={getButtonTextStyle(!isLastPage, isLastPage)}
         >
-          Next
+          İleri
         </Button>
       </Box>
       <EmailDialog

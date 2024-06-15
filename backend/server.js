@@ -251,12 +251,13 @@ app.delete('/api/projects/:id', (req, res) => {
 
 // Endpoint for submitting a new entry to the Inbox table
 app.post('/api/inbox', (req, res) => {
-  const { Name, Surname, Email, Phone, Message, EmailSubject} = req.body;
+  const { Name, Surname, Email, Phone, Message, EmailSubject, Time } = req.body;
+
 
   console.log("Received data:", req.body);
 
-  const query = `INSERT INTO Inbox (Name, Surname, Email, Phone, Message, EmailSubject) VALUES (?, ?, ?, ?, ?, ?)`;
-  db.run(query, [Name, Surname, Email, Phone, Message, EmailSubject], function (err) {
+  const query = `INSERT INTO Inbox (Name, Surname, Email, Phone, Message, EmailSubject, Time) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+  db.run(query, [Name, Surname, Email, Phone, Message, EmailSubject, Time], function (err) {
     if (err) {
       console.error("Database error:", err.message);
       return res.status(400).json({ error: err.message });
