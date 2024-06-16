@@ -106,3 +106,39 @@
     animation: highlight 0.6s forwards;
   }
   
+  
+.smallListItem {
+  width: 100%; /* Ensures it stretches to sidebar width */
+  padding: 10px 0; /* Reduced padding */
+  display: flex;
+  justify-content: center;
+  background-color: #0057b3d5;
+
+}
+
+.smallCard {
+  width: 100%;
+  background-color: #0056b3;
+  color: white;
+  display: flex;
+  
+  cursor: pointer;
+  padding: 10px 20px; /* Smaller padding */
+}
+
+.smallCardContent {
+  display: flex;
+ 
+}
+
+.smallIcon {
+  font-size: 20px; /* Smaller icon size */
+}
+
+.smallText {
+  color: white;
+  fontWeight: bold;
+  fontSize: 14px; /* Smaller font size */
+  fontFamily: "Termina, sans-serif";
+  marginTop: 5px; /* Reduced margin top */
+}

@@ -1,4 +1,5 @@
-import React, { useState, ChangeEvent, useCallback } from "react";
+import React, { useState, ChangeEvent, useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -10,10 +11,16 @@ import {
   CardContent,
   IconButton,
   Typography,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
 } from "@mui/material";
 import { useDropzone, Accept } from "react-dropzone";
 import { LuImagePlus } from "react-icons/lu";
 import { Close } from "@mui/icons-material";
+import { FiCheckCircle } from "react-icons/fi";
 import {
   DragDropContext,
   Droppable,
@@ -22,16 +29,13 @@ import {
   DroppableProvided,
   DraggableProvided,
 } from "react-beautiful-dnd";
+import { MdExitToApp } from "react-icons/md";
 import axios from "axios";
 import Sidebar from "./Sidebar";
 import ProjectList from "./ProjectList";
 import AdminCredentials from "./AdminCredentials";
 import ClientInbox from "./ClientInbox";
 import { useTheme } from "./ThemeContext";
-import PhotoSlider from "../Slider/Slider";
-import image1 from "../assets/footage1.png";
-import image2 from "../assets/footage2.png";
-import image3 from "../assets/footage3.png";
 import styles from "./style.module.css";
 
 interface FormData {
@@ -46,7 +50,13 @@ interface FormData {
 }
 
 const AddNew: React.FC = () => {
-  const { theme } = useTheme(); // Use the theme context
+  const { theme } = useTheme();
+  const navigate = useNavigate();
+  const [openSuccessDialog, setOpenSuccessDialog] = useState(false);
+  const [openErrorDialog, setOpenErrorDialog] = useState(false);
+  const handleCloseError = () => {
+    setOpenErrorDialog(false);
+  };
   const [formData, setFormData] = useState<FormData>({
     heading: "",
     description: "",
@@ -59,12 +69,16 @@ const AddNew: React.FC = () => {
   });
   const [openModal, setOpenModal] = useState(false);
   const [view, setView] = useState("add");
-  const slides = [
-    { image: image1, text: "image-1" },
-    { image: image2, text: "image-2" },
-    { image: image3, text: "image-3" },
-  ];
-
+  const handlerQuit = () => {
+    localStorage.removeItem("token"); // Clear the token or any other session data
+    navigate("/login");
+  };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -146,8 +160,10 @@ const AddNew: React.FC = () => {
         }
       );
       console.log("Project added successfully:", response.data);
+      setOpenSuccessDialog(true);
     } catch (error) {
       console.error("Error adding project:", error);
+      setOpenErrorDialog(true);
     }
   };
 
@@ -165,12 +181,45 @@ const AddNew: React.FC = () => {
       <div
         style={{
           flex: 1,
-          padding: "0px",
+          padding: "0 20px 20px 20px", // Padding adjusted for overall spacing
           backgroundColor: backgroundColor,
           minHeight: "100vh",
           color: textColor,
+          position: "relative", // For absolute positioning of the logout card
         }}
       >
+        {/* Logout Card positioned absolutely at the top right */}
+        <Card
+          style={{
+            position: "absolute",
+            top: 855,
+            right: 15,
+            backgroundColor: "#0057b3d5",
+            color: "white",
+            cursor: "pointer",
+            padding: "2px 10px",
+            zIndex: 10,
+          }}
+          onClick={handlerQuit}
+        >
+          <CardContent
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <MdExitToApp size={50} style={{ marginRight: 5 }} />
+            <Typography
+              style={{
+                fontSize: 20,
+                fontWeight: "bolder",
+                fontFamily: "Inter, sans-serif",
+              }}
+            >
+              Çıkış Yap
+            </Typography>
+          </CardContent>
+        </Card>
         {view === "add" && (
           <div
             className={styles.addNew}
@@ -326,15 +375,7 @@ const AddNew: React.FC = () => {
                     style={{ display: "none" }}
                     id="fileInput"
                   />
-                  <label htmlFor="fileInput" style={{ cursor: "pointer" }}>
-                    <Button
-                      component="span"
-                      variant="contained"
-                      color="primary"
-                    >
-                      Upload Photos
-                    </Button>
-                  </label>
+
                   <Button
                     type="submit"
                     sx={{
@@ -494,6 +535,93 @@ const AddNew: React.FC = () => {
         {view === "list" && <ProjectList />}
         {view === "admin" && <AdminCredentials />}
         {view === "clientInbox" && <ClientInbox />}
+
+        {/* Success Dialog */}
+        <Dialog
+          open={openSuccessDialog}
+          onClose={() => setOpenSuccessDialog(false)}
+          sx={{
+            "& .MuiDialog-paper": {
+              width: "fit-content",
+              maxWidth: "400px",
+            },
+          }}
+        >
+          <DialogTitle
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "20px 24px",
+            }}
+          >
+            <Box display="flex" alignItems="center">
+              <FiCheckCircle
+                size={44}
+                color="green"
+                style={{ marginRight: 8 }}
+              />
+              <Typography
+                variant="h6"
+                component="span"
+                style={{ fontFamily: "Termina", color: "green" }}
+              >
+                Added Successfully
+              </Typography>
+            </Box>
+            <IconButton
+              onClick={() => setOpenSuccessDialog(false)}
+              color="default"
+              edge="end"
+              style={{ marginLeft: 10 }}
+            >
+              <Close />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent dividers>
+            <DialogContentText>
+              Yeni proje başarıyla veritabanına eklendi.
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
+        {/* Error Dialog */}
+        <Dialog
+          open={openErrorDialog}
+          onClose={handleCloseError}
+          aria-labelledby="error-dialog-title"
+          aria-describedby="error-dialog-description"
+          sx={{
+            "& .MuiDialog-paper": {
+              width: "fit-content",
+              maxWidth: "400px",
+            },
+          }}
+        >
+          <DialogTitle
+            id="error-dialog-title"
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              variant="h6"
+              color="error"
+              style={{ fontFamily: "Termina", fontSize: 30 }}
+            >
+              Adding Error
+            </Typography>
+            <IconButton onClick={handleCloseError} color="inherit">
+              <Close />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent dividers>
+            <DialogContentText id="error-dialog-description">
+              Projeniz eklenirken bir sorun oluştu. Lütfen tekrar deneyin.
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

@@ -3,12 +3,13 @@ import { List, ListItem, Card, CardContent, Typography } from "@mui/material";
 import { LuImagePlus } from "react-icons/lu";
 import { CiBoxList } from "react-icons/ci";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { MdOutlineWbSunny } from "react-icons/md";
+import { MdOutlineWbSunny, MdExitToApp } from "react-icons/md";
 import { FaRegMoon } from "react-icons/fa";
 import { useTheme } from "./ThemeContext";
 import Switch from "react-switch";
 import "./Sidebar.css";
 import { IoIosContacts } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 interface SidebarProps {
   onSelect: (view: string) => void;
@@ -16,6 +17,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ onSelect }) => {
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
 
   return (
     <div
@@ -23,14 +25,14 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelect }) => {
         width: "280px",
         backgroundColor: "#0056b3",
         padding: "20px",
-        height: "100vh",
+        height: "auto",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         gap: "20px",
       }}
     >
-      <List component="nav" style={{ width: "100%", marginTop: 35 }}>
+      <List component="nav" style={{ width: "100%", marginTop: 30 }}>
         <ListItem
           button
           onClick={() => onSelect("clientInbox")}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import {
   TextField,
   Button,
@@ -7,16 +7,75 @@ import {
   Card,
   CardContent,
   Grid,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  IconButton,
 } from "@mui/material";
-import { AccountCircle, Lock } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { AccountCircle, Lock, Close } from "@mui/icons-material";
+import { FiCheckCircle } from "react-icons/fi";
 import axios from "axios";
-import { useTheme } from "./ThemeContext"; // Import the theme context
+import { useTheme } from "./ThemeContext";
 import styles from "./style.module.css";
+import { PiClockCountdown } from "react-icons/pi";
 
-const AdminCredentials: React.FC = () => {
-  const { theme } = useTheme(); // Use the theme context
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+// Type definition for the token payload
+interface TokenPayload {
+  exp?: number;
+}
+
+const decodeToken = (token: string): TokenPayload | null => {
+  try {
+    return JSON.parse(atob(token.split(".")[1]));
+  } catch (e) {
+    console.error("Failed to decode token:", e);
+    return null;
+  }
+};
+
+const AdminCredentials: FC = () => {
+  const { theme } = useTheme();
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [timer, setTimer] = useState<string>("00:00");
+  const [openDialog, setOpenDialog] = useState(false);
+  const [openSuccessDialog, setOpenSuccessDialog] = useState(false);
+  const [openErrorDialog, setOpenErrorDialog] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = decodeToken(token);
+      if (decoded && decoded.exp) {
+        const updateTimer = () => {
+          const now = Math.floor(Date.now() / 1000);
+          const timeLeft = decoded.exp ? decoded.exp - now : null;
+          if (timeLeft && timeLeft >= 0) {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            setTimer(`${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`);
+          } else {
+            clearInterval(countdownFunc);
+            setTimer("00:00");
+            setOpenDialog(true);
+          }
+        };
+
+        const countdownFunc = setInterval(updateTimer, 1000);
+        updateTimer();
+
+        return () => clearInterval(countdownFunc);
+      }
+    }
+  }, []);
+
+  const handleClose = () => {
+    setOpenDialog(false);
+    navigate("/login");
+  };
 
   useEffect(() => {
     const fetchAdminCredentials = async () => {
@@ -24,8 +83,10 @@ const AdminCredentials: React.FC = () => {
         const response = await axios.get("http://localhost:8080/api/admin");
         setUsername(response.data.username);
         setPassword(response.data.password);
+        console.log(response.data.username + response.data.password);
       } catch (error) {
         console.error("Error fetching admin credentials:", error);
+        setOpenErrorDialog(true);
       }
     };
 
@@ -34,16 +95,24 @@ const AdminCredentials: React.FC = () => {
 
   const handleSave = async () => {
     try {
-      await axios.put("http://localhost:8080/api/admin", {
+      const response = await axios.put("http://localhost:8080/api/admin", {
         username,
         password,
       });
-      alert("Admin credentials updated successfully");
+
+      if (response.status === 200) {
+        setOpenSuccessDialog(true); // Open the success dialog
+      }
     } catch (error) {
       console.error("Error updating admin credentials:", error);
     }
   };
-
+  const handleCloseSuccess = () => {
+    setOpenSuccessDialog(false);
+  };
+  const handleCloseError = () => {
+    setOpenErrorDialog(false);
+  };
   const isDarkMode = theme === "dark";
   const backgroundColor = isDarkMode ? "#001f3f" : "#ffffff";
   const textColor = isDarkMode ? "white" : "black";
@@ -102,6 +171,25 @@ const AdminCredentials: React.FC = () => {
                 style={{ fontSize: 22, color: textColor }}
               >
                 Mevcut Şifre: {password}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12}>
+          <Card sx={{ width: 430, backgroundColor: cardBackgroundColor }}>
+            <CardContent sx={{ display: "flex", alignItems: "center" }}>
+              <PiClockCountdown
+                style={{
+                  fontSize: "38px",
+                  marginRight: 15,
+                  color: textColor,
+                }}
+              />
+              <Typography
+                variant="body1"
+                style={{ fontSize: 22, color: textColor, textAlign: "center" }}
+              >
+                Oturum şu süre içinde sona eriyor: {timer}
               </Typography>
             </CardContent>
           </Card>
@@ -206,6 +294,112 @@ const AdminCredentials: React.FC = () => {
           Kaydet
         </Button>
       </Box>
+      <Dialog open={openDialog} onClose={handleClose}>
+        <DialogTitle
+          style={{ fontFamily: "Montserrat", fontWeight: 600, fontSize: 29 }}
+        >
+          {"Oturumunuz Sona Ermiştir"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Oturumunuzun süresi dolmuştur. Lütfen tekrar giriş yapınız.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleClose}
+            style={{
+              backgroundColor: "#0056b3",
+              color: "white",
+              fontFamily: "Montserrat",
+            }}
+          >
+            Çıkış Yap
+          </Button>
+        </DialogActions>
+      </Dialog>
+      {/* Success Dialog */}
+      <Dialog
+        open={openSuccessDialog}
+        onClose={handleCloseSuccess}
+        sx={{
+          "& .MuiDialog-paper": {
+            width: "fit-content",
+            maxWidth: "400px",
+          },
+        }}
+      >
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "20px 24px",
+          }}
+        >
+          <Box display="flex" alignItems="center">
+            <FiCheckCircle size={44} color="green" style={{ marginRight: 8 }} />
+            <Typography
+              variant="h6"
+              component="span"
+              style={{ fontFamily: "Termina", color: "green" }}
+            >
+              Update Successful
+            </Typography>
+          </Box>
+          <IconButton
+            onClick={handleCloseSuccess}
+            color="default"
+            edge="end"
+            style={{ marginLeft: 10 }}
+          >
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent dividers>
+          <DialogContentText>
+            Kullanıcı adı ve şifre başarıyla güncellendi.
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+      <Dialog
+        open={openErrorDialog}
+        onClose={handleCloseError}
+        aria-labelledby="error-dialog-title"
+        aria-describedby="error-dialog-description"
+        sx={{
+          "& .MuiDialog-paper": {
+            width: "fit-content",
+            maxWidth: "400px",
+          },
+        }}
+      >
+        <DialogTitle
+          id="error-dialog-title"
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            variant="h6"
+            color="error"
+            style={{ fontFamily: "Termina", fontSize: 30 }}
+          >
+            Update Error
+          </Typography>
+          <IconButton onClick={handleCloseError} color="inherit">
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent dividers>
+          <DialogContentText id="error-dialog-description">
+            Kimlik bilgileriniz güncellenirken bir sorun oluştu. Lütfen tekrar
+            deneyin.
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 };

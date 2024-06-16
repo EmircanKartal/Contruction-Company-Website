@@ -2,14 +2,15 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Projects from "./components/Projects/Projects";
-import ProjectDetail from "./components/Projects/ProjectDetail"; // Import the ProjectDetail component
+import ProjectDetail from "./components/Projects/ProjectDetail";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Post/Login";
 import Add from "./components/Post/AddNew";
 import styles from "./App.module.css";
-import NotFound from "./components/NotFound/NotFound"; // Import the NotFound component
+import NotFound from "./components/NotFound/NotFound";
+import ProtectedRoute from "./components/Post/ProtectedRoute";
 
 const App = () => {
   return (
@@ -24,7 +25,14 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/add" element={<Add />} />
+          <Route
+            path="/add"
+            element={
+              <ProtectedRoute>
+                <Add />
+              </ProtectedRoute>
+            }
+          />
           <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
         </Routes>
       </div>

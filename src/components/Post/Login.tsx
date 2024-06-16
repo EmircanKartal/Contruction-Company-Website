@@ -1,3 +1,4 @@
+// Login.tsx
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +10,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  // Login.tsx in React
   const handleLogin = async () => {
     try {
       const response = await fetch("http://localhost:8080/login", {
@@ -19,20 +21,23 @@ const Login: React.FC = () => {
         body: JSON.stringify({ username, password }),
       });
 
+      const data = await response.json();
+      console.log(response);
       if (response.ok) {
-        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("token", data.token); // Save the token
         navigate("/add");
       } else {
-        alert("Kullanıcı adı ve şifrenizi kontrol edin!");
+        alert(data.message || "Login failed");
       }
     } catch (error) {
       console.error("Login error:", error);
+      alert("Login error: Network or server issue.");
     }
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      handleLogin(); // Call handleLogin when Enter key is pressed
+      handleLogin();
     }
   };
 

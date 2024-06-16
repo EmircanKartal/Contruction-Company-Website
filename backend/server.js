@@ -5,9 +5,19 @@ const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const app = express();
 const PORT = 8080;
+const session = require('express-session');
+
+app.use(session({
+  secret: 'your-secret-key', // Use a real secret in production
+  resave: false,
+  saveUninitialized: false, // This should be false to avoid storing too much session data on the server
+  cookie: { secure: false } // Set to true if your production environment uses HTTPS
+}));
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
@@ -50,23 +60,39 @@ const upload = multer({
 });
 
 // Login endpoint
+const jwtSecret = 'yuzyapi'; // This should be a secure, environment-specific secret
+
+// Login endpoint modification
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-
   const query = `SELECT * FROM Login WHERE username = ? AND password = ?`;
-  db.get(query, [username, password], (err, row) => {
+  db.get(query, [username, password], (err, user) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-
-    if (row) {
-      // User found
-      res.json({ message: 'Login successful' });
+    if (user) {
+      const token = jwt.sign({ id: user.id, username: user.username }, jwtSecret, { expiresIn: '40m' });
+      res.json({ message: 'Login successful', token });
     } else {
-      // User not found
       res.status(401).json({ message: 'Invalid username or password' });
     }
   });
+});
+
+
+// Modify /api/verifySession to check token validity
+app.get('/api/verifySession', (req, res) => {
+  const token = req.headers.authorization?.split(' ')[1]; // Expected "Bearer [token]"
+  if (token) {
+    jwt.verify(token, jwtSecret, (err, decoded) => {
+      if (err) {
+        return res.status(401).json({ message: "Invalid or expired token" });
+      }
+      res.status(200).json({ message: "Session is active", user: decoded });
+    });
+  } else {
+    res.status(401).json({ message: "No token provided" });
+  }
 });
 
 // Get admin credentials endpoint
