@@ -26,10 +26,10 @@ import {
   Droppable,
   Draggable,
   DropResult,
-  DroppableProvided,
-  DraggableProvided,
 } from "react-beautiful-dnd";
 import { MdExitToApp } from "react-icons/md";
+import { Close as CloseIcon } from "@mui/icons-material";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import axios from "axios";
 import Sidebar from "./Sidebar";
 import ProjectList from "./ProjectList";
@@ -41,7 +41,7 @@ import styles from "./style.module.css";
 interface FormData {
   heading: string;
   description: string;
-  photos: File[];
+  photos: { file: File; customPhotoId: number }[];
   startDate: string;
   location: string;
   projectType: string;
@@ -68,6 +68,9 @@ const AddNew: React.FC = () => {
     firmName: "",
   });
   const [openModal, setOpenModal] = useState(false);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [coverPhotoId, setCoverPhotoId] = useState<number | null>(null);
   const [view, setView] = useState("add");
   const handlerQuit = () => {
     localStorage.removeItem("token"); // Clear the token or any other session data
@@ -79,6 +82,7 @@ const AddNew: React.FC = () => {
       navigate("/login");
     }
   }, [navigate]);
+
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -88,7 +92,13 @@ const AddNew: React.FC = () => {
       if (files) {
         setFormData((prev) => ({
           ...prev,
-          photos: Array.from(files),
+          photos: [
+            ...prev.photos,
+            ...Array.from(files).map((file, index) => ({
+              file,
+              customPhotoId: Date.now() + index,
+            })),
+          ],
         }));
         setOpenModal(true);
       }
@@ -103,7 +113,13 @@ const AddNew: React.FC = () => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFormData((prev) => ({
       ...prev,
-      photos: [...prev.photos, ...acceptedFiles],
+      photos: [
+        ...prev.photos,
+        ...acceptedFiles.map((file, index) => ({
+          file,
+          customPhotoId: Date.now() + index,
+        })),
+      ],
     }));
     setOpenModal(true);
   }, []);
@@ -145,10 +161,14 @@ const AddNew: React.FC = () => {
     formDataToSubmit.append("catalog", formData.catalogLink);
     formDataToSubmit.append("type", formData.projectType);
     formDataToSubmit.append("firm", formData.firmName);
-    formData.photos.forEach((photo, index) => {
-      formDataToSubmit.append("photos", photo);
+    formData.photos.forEach((photo) => {
+      formDataToSubmit.append("photos", photo.file);
+      formDataToSubmit.append("customPhotoIds", photo.customPhotoId.toString()); // Assuming 'customPhotoId' is a unique identifier for each photo
     });
-
+    if (coverPhotoId !== null) {
+      // Check if coverPhotoId is not null before appending
+      formDataToSubmit.append("coverPhotoId", coverPhotoId.toString());
+    }
     try {
       const response = await axios.post(
         "http://localhost:8080/api/projects",
@@ -167,12 +187,86 @@ const AddNew: React.FC = () => {
     }
   };
 
+  const closeGallery = () => {
+    setIsGalleryOpen(false);
+  };
+
+  const showPreviousImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? formData.photos.length - 1 : prevIndex - 1
+    );
+  };
+
+  const showNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === formData.photos.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (isGalleryOpen) {
+        if (event.key === "ArrowLeft") {
+          showPreviousImage();
+        } else if (event.key === "ArrowRight") {
+          showNextImage();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isGalleryOpen, formData.photos.length]);
+
+  const handleSetCoverPhoto = (photoId: number) => {
+    setCoverPhotoId(photoId);
+  };
+
   const isDarkMode = theme === "dark";
   const backgroundColor = isDarkMode ? "#001f3f" : "#ffffff";
   const textColor = isDarkMode ? "white" : "black";
   const titleColor = isDarkMode ? "#ffffff" : "#000000";
   const borderColor = theme === "dark" ? "#ffffff" : "#ccc";
   const uploadBackgroundColor = theme === "dark" ? "#003167" : "#f0f0f0";
+
+  const galleryModal = (
+    <Modal
+      open={isGalleryOpen}
+      onClose={closeGallery}
+      className="modal-overlay"
+    >
+      <div className="modal-content">
+        {formData.photos[currentImageIndex] ? (
+          <img
+            src={URL.createObjectURL(formData.photos[currentImageIndex].file)}
+            alt={`Gallery view ${currentImageIndex}`}
+            className="img"
+            style={{
+              height: "auto",
+              width: "70%",
+              padding: "12vh 14vw", // Adjust vh/vw values based on your design needs
+            }}
+          />
+        ) : (
+          <div style={{ color: "white" }}>No image selected</div>
+        )}
+        <IconButton className="close-button" onClick={closeGallery}>
+          <CloseIcon
+            style={{
+              fontSize: "35px",
+              color: "white",
+              marginLeft: "1250px",
+              marginTop: "20px",
+            }}
+          />
+        </IconButton>
+        <FaArrowLeft className="arrow left-arrow" onClick={showPreviousImage} />
+        <FaArrowRight className="arrow right-arrow" onClick={showNextImage} />
+      </div>
+    </Modal>
+  );
 
   return (
     <div style={{ display: "flex" }}>
@@ -436,51 +530,66 @@ const AddNew: React.FC = () => {
                 </Card>
               </Grid>
             </Grid>
-            <Modal open={openModal} onClose={() => setOpenModal(false)}>
+
+            {/*Photo Organizer*/}
+            {/*This modal help the organize uploaded photos*/}
+            <Modal
+              open={openModal}
+              onClose={() => {
+                setOpenModal(false);
+                setFormData((prev) => ({ ...prev, photos: [] }));
+              }}
+            >
               <Paper
                 style={{
                   position: "absolute",
                   top: "50%",
                   left: "50%",
                   transform: "translate(-50%, -50%)",
-                  width: 600,
+                  width: "80%",
+                  maxHeight: "90vh",
+                  overflow: "auto",
                   padding: 20,
+                  backgroundColor: backgroundColor,
                 }}
               >
                 <DragDropContext onDragEnd={handleDragEnd}>
                   <Droppable droppableId="photos">
-                    {(provided: DroppableProvided) => (
+                    {(provided) => (
                       <div
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                         style={{
                           display: "grid",
-                          gridTemplateColumns: "repeat(3, 1fr)",
+                          gridTemplateColumns:
+                            "repeat(auto-fill, minmax(250px, 1fr))",
                           gap: 10,
                         }}
                       >
                         {formData.photos.map((photo, index) => (
                           <Draggable
-                            key={index}
-                            draggableId={`${index}`}
+                            key={photo.customPhotoId}
+                            draggableId={`${photo.customPhotoId}`}
                             index={index}
                           >
-                            {(provided: DraggableProvided) => (
+                            {(provided) => (
                               <div
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                                 style={{
                                   position: "relative",
+                                  width: "100%",
                                   ...provided.draggableProps.style,
                                 }}
                               >
                                 <img
-                                  src={URL.createObjectURL(photo)}
+                                  src={URL.createObjectURL(photo.file)}
                                   alt={`Uploaded ${index}`}
-                                  style={{
-                                    width: "100%",
-                                    height: "auto",
+                                  style={{ width: "100%", height: "auto" }}
+                                  onClick={() => {
+                                    setCurrentImageIndex(index);
+                                    setIsGalleryOpen(true);
                                   }}
                                 />
                                 <IconButton
@@ -488,12 +597,28 @@ const AddNew: React.FC = () => {
                                     position: "absolute",
                                     top: 5,
                                     right: 5,
-                                    backgroundColor: "red",
                                     color: "white",
+                                    backgroundColor: "red",
                                   }}
                                   onClick={() => handleDeletePhoto(index)}
                                 >
                                   <Close />
+                                </IconButton>
+                                <IconButton
+                                  onClick={() =>
+                                    handleSetCoverPhoto(photo.customPhotoId)
+                                  }
+                                  style={{
+                                    position: "absolute",
+                                    top: 5,
+                                    left: 5,
+                                    color:
+                                      coverPhotoId === photo.customPhotoId
+                                        ? "gold"
+                                        : "grey",
+                                  }}
+                                >
+                                  <FiCheckCircle />
                                 </IconButton>
                               </div>
                             )}
@@ -535,7 +660,7 @@ const AddNew: React.FC = () => {
         {view === "list" && <ProjectList />}
         {view === "admin" && <AdminCredentials />}
         {view === "clientInbox" && <ClientInbox />}
-
+        {galleryModal}
         {/* Success Dialog */}
         <Dialog
           open={openSuccessDialog}

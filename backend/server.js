@@ -124,7 +124,7 @@ app.put('/api/admin', (req, res) => {
 
 // Projects tablosu için endpointler
 app.post('/api/projects', upload.array('photos', 10), (req, res) => {
-  const { title, date, location, catalog, description, type, firm } = req.body;
+  const { title, date, location, catalog, description, type, firm, coverPhotoId } = req.body;
   const photos = req.files;
 
   db.run(`INSERT INTO Projects (title, date, location, catalog, description, type, firm) VALUES (?, ?, ?, ?, ?, ?, ?)`, 
@@ -135,14 +135,15 @@ app.post('/api/projects', upload.array('photos', 10), (req, res) => {
       const projectId = this.lastID;
 
       // Insert images into Images table
-      photos.forEach(photo => {
-          const imagePath = `/uploads/${photo.filename}`;
+      photos.forEach((photo, index) => {
+          const customPhotoId = req.body.customPhotoIds[index]; // This assumes customPhotoIds are sent as an array
+          const isCover = parseInt(customPhotoId) === parseInt(coverPhotoId);
           fs.readFile(photo.path, (err, data) => {
               if (err) {
                   return res.status(500).json({ error: err.message });
               }
-              db.run(`INSERT INTO Images (project_id, image) VALUES (?, ?)`, [projectId, data], function (err) {
-                  if (err) {
+              db.run(`INSERT INTO Images (project_id, image, isCoverPhoto) VALUES (?, ?, ?)`, [projectId, data, isCover], function (err) {
+                if (err) {
                       return res.status(400).json({ error: err.message });
                   }
               });
@@ -153,13 +154,47 @@ app.post('/api/projects', upload.array('photos', 10), (req, res) => {
   });
 });
 
+
 const bufferToBase64 = (buffer) => {
 return buffer.toString('base64');
 };
 
+// Endpoint to set an image as cover photo
+app.put('/api/set-cover/:photoId', (req, res) => {
+  const { photoId } = req.params;
+
+  // Get the project_id of the specified photo
+  db.get('SELECT project_id FROM Images WHERE id = ?', [photoId], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (!row) {
+      return res.status(404).json({ error: 'Image not found' });
+    }
+    const projectId = row.project_id;
+
+    // Set isCoverPhoto to 0 for all images in the project
+    db.run('UPDATE Images SET isCoverPhoto = 0 WHERE project_id = ?', [projectId], (err) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+
+      // Set isCoverPhoto to 1 for the specified image
+      db.run('UPDATE Images SET isCoverPhoto = 1 WHERE id = ?', [photoId], (err) => {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+        res.json({ message: 'Cover photo updated successfully!' });
+      });
+    });
+  });
+});
+
+
+
 app.get('/api/projects', (req, res) => {
   const query = `
-    SELECT p.id, p.title, p.date, p.location, p.catalog, p.description, p.type, p.firm, i.image
+    SELECT p.id, p.title, p.date, p.location, p.catalog, p.description, p.type, p.firm, i.image, i.isCoverPhoto
     FROM Projects p
     LEFT JOIN Images i ON p.id = i.project_id
     ORDER BY p.id DESC
@@ -173,18 +208,20 @@ app.get('/api/projects', (req, res) => {
     // Group images by project id
     const projects = {};
     rows.forEach(row => {
-      const { id, image, ...project } = row;
+      const { id, image, isCoverPhoto, ...project } = row;
       if (!projects[id]) {
-        projects[id] = { id, ...project, images: [] };
+        projects[id] = { id, ...project, images: [], isCoverPhoto: [] };
       }
       if (image) {
         projects[id].images.push(bufferToBase64(image));
+        projects[id].isCoverPhoto.push(isCoverPhoto);
       }
     });
 
     res.json(Object.values(projects));
   });
 });
+
 
 // Fetch specific project details including images
 app.get('/api/projects/:id', (req, res) => {
