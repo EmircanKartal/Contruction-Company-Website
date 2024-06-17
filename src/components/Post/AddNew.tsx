@@ -245,23 +245,28 @@ const AddNew: React.FC = () => {
             className="img"
             style={{
               height: "auto",
-              width: "70%",
-              padding: "12vh 14vw", // Adjust vh/vw values based on your design needs
+              width: "63%",
+              padding: "10vh 18vw", // Adjust vh/vw values based on your design needs
             }}
           />
         ) : (
           <div style={{ color: "white" }}>No image selected</div>
         )}
-        <IconButton className="close-button" onClick={closeGallery}>
-          <CloseIcon
-            style={{
-              fontSize: "35px",
-              color: "white",
-              marginLeft: "1250px",
-              marginTop: "20px",
-            }}
-          />
+        <IconButton
+          onClick={closeGallery}
+          style={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+            color: "white",
+            fontSize: "35px",
+            padding: "10px",
+            margin: "10px",
+          }}
+        >
+          <CloseIcon style={{ fontSize: "43px" }} />
         </IconButton>
+
         <FaArrowLeft className="arrow left-arrow" onClick={showPreviousImage} />
         <FaArrowRight className="arrow right-arrow" onClick={showNextImage} />
       </div>
@@ -598,7 +603,7 @@ const AddNew: React.FC = () => {
                                     top: 5,
                                     right: 5,
                                     color: "white",
-                                    backgroundColor: "red",
+                                    backgroundColor: "#ff0000ba",
                                   }}
                                   onClick={() => handleDeletePhoto(index)}
                                 >
@@ -616,6 +621,20 @@ const AddNew: React.FC = () => {
                                       coverPhotoId === photo.customPhotoId
                                         ? "gold"
                                         : "grey",
+                                    backgroundColor:
+                                      coverPhotoId === photo.customPhotoId
+                                        ? "#ffffff"
+                                        : "#ffffffba", // Change background dynamically
+                                    borderRadius: "50%",
+                                    padding: "5px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    boxShadow:
+                                      coverPhotoId === photo.customPhotoId
+                                        ? "0 0 8px 2px gold, 0px 2px 4px rgba(0,0,0,0.25)" // Glowing effect when selected
+                                        : "0px 2px 4px rgba(0,0,0,0.25)",
+                                    transition: "all 0.3s ease-in-out", // Smooth transition for color and shadow changes
                                   }}
                                 >
                                   <FiCheckCircle />
